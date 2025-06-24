@@ -1,0 +1,29 @@
+.buttonLeft,
+.buttonRight {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
+    display: none;
+}
+
+.buttonLeft {
+    left: 10px;
+}
+
+.buttonRight {
+    right: 10px;
+}
+
+@media (min-width:768px) {
+    .buttonLeft,
+    .buttonRight {
+        display: block;
+    }
+}

@@ -1,0 +1,32 @@
+.input {
+    padding: 0.4rem;
+    font-size: 1rem;
+    border-radius: 7px;
+    border: 1px solid var(--ColorGray_5);
+    background-color: var(--ColorWhiteBackground);
+    outline: none;
+}
+
+.input:focus {
+    border: 1.5px solid var(--ColorBlack);
+    box-shadow: 0 0 5px var(--ColorBlack);
+}
+
+.label {
+    font-size: 0.9rem
+}
+
+.errors {
+    list-style: none;
+    color: var(--ColorError);
+    font-size: 0.75rem;
+    display: grid;
+    gap: 0.2rem;
+    font-weight: 500;
+}
+
+.container {
+    margin-top: 0.3rem;
+    display: grid;
+    gap: 0.2rem;
+}

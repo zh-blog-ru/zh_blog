@@ -1,0 +1,57 @@
+# Общие исключения
+**/.DS_Store
+*.log
+*.pid
+*.seed
+*.pid.lock
+*.pem
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Директории зависимостей (учитываем вложенность)
+**/node_modules/
+**/.pnp
+.pnp.*
+**/build/
+**/dist/
+**/out/
+**/.next/
+**/.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Тесты и покрытие
+**/coverage/
+**/.nyc_output
+**/test-results.xml
+
+# IDE (ищем во всём проекте)
+**/.idea/
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Системные файлы
+**/.temp
+**/.tmp
+**/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# TypeScript
+**/*.tsbuildinfo
+**/next-env.d.ts
+
+# Vercel
+**/.vercel/

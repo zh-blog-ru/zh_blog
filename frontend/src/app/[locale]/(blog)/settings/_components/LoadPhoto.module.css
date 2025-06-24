@@ -1,0 +1,75 @@
+.main {
+  height: min-content;
+  display: grid;
+  grid-template-columns: min-content auto;
+  gap: 1.3rem;
+}
+
+.photo {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  align-self: center;
+  justify-self: center;
+  background-color: rgba(143, 143, 143, 0.5);
+  /* Белый полупрозрачный фон */
+  border-radius: 50%;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.selectImage {
+  width: clamp(50px, 6rem, 70px);
+  height: clamp(50px, 6rem, 70px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.metaData {
+  display: grid;
+  grid-template-rows: min-content min-content auto;
+  gap: 0.5rem;
+}
+
+.metaData h3 {
+  font-weight: 500;
+}
+
+.metaData>p {
+  color: var(--ColorGray_4);
+}
+
+.loadFile {
+  align-items: center;
+  display: flex;
+  gap: 0.7rem;
+}
+
+.loadFile input[type=file] {
+  display: none;
+}
+
+.button {
+  background-color: var(--ColorBlackBackground);
+  color: var(--ColorWhite);
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: var(--ColorGray_6);
+}
+
+.error {
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  color: var(--ColorError);
+}

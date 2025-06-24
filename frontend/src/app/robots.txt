@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /*/articles$     
+Allow: /*/articles/     
+Allow: /*/about_me$     
+
+Disallow: /*/login$       
+Disallow: /*/reg$         
+Disallow: /*/settings$    
+Disallow: /*/profile/     
+
+Disallow: /api/           
+
+Sitemap: https://ваш-сайт.ru/sitemap.xml

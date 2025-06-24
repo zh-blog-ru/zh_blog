@@ -1,0 +1,49 @@
+.main {
+  position: relative;
+  height: 100%;
+}
+
+.locales {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  cursor: pointer;
+}
+
+.locales svg {
+  font-size: 1.3rem;
+}
+
+.list {
+  position: absolute;
+  border: 1px solid var(--ColorGray_3);
+  box-shadow: 0 2px 5px var(--ColorGray_3);
+  color: var(--ColorBlack);
+  background-color: var(--ColorWhite);
+  z-index: 10;
+  min-width: 100px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.locale {
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.locale p {
+  padding: 0px;
+}
+.locale svg {
+  font-size: 1.1rem;
+}
+.localeCurrent {
+  font-weight: 600;
+}
+
+.list li:hover {
+  background-color: var(--ColorGray_1);
+}
+
+@media (min-width: 576px) {}

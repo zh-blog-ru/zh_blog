@@ -1,0 +1,17 @@
+.label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.error {
+    margin-top: 0.3rem;
+    color: var(--ColorError);
+    font-size: 0.75rem;
+}
+
+.username div input:focus {
+    border: 1.5px solid var(--ColorBlack);
+    /* border: 1.5px solid rgb(0, 53, 166); */
+    box-shadow: 0 0 5px var(--ColorBlack);
+}

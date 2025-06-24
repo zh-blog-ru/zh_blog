@@ -1,0 +1,7 @@
+.blogLayout {
+    display: grid;
+    grid-template-rows: min-content minmax(90vh,auto) min-content;
+    background: linear-gradient(180deg, var(--BlogLayoutBackround));
+    min-height: 100vh;
+    color: var(--ColorBlack);
+}

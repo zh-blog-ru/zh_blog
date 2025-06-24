@@ -1,0 +1,44 @@
+.main {
+    display: grid;
+    grid-template-rows: auto min-content min-content;
+    gap: 0.5rem;
+}
+
+.main > div:nth-child(1) {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-rows: min-content auto;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+}
+
+.meta div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta button {
+    font-size: 0.83rem;
+    width: min-content;
+    padding: 0.4rem 1rem;
+    font-family: unset;
+    font-weight: 500;
+    border: none;
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.meta button:hover {
+    color: var(--ColorGray_5);
+}
+
+.error {
+    font-size: 0.9rem;
+    color: var(--ColorError);
+}

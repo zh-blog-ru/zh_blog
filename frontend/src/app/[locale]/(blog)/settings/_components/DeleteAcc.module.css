@@ -1,0 +1,66 @@
+.deleteButton {
+    background-color: var(--ColorError);
+    color: var(--ColorBlackBack);
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.button {
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite);
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.modal {
+    max-width: 450px;
+    border-radius: 10px;
+    background-color: var(--ColorWhite);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 90%;
+    padding: 1rem 1rem 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.deleteModal {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.deleteModal>div {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.deleteModal p:nth-child(2) {
+    font-weight: 600;
+}
+.error {
+    color: var(--ColorError);
+}
+@media (min-width:576px) {
+    .inputs {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}

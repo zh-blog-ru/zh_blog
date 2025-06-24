@@ -1,0 +1,186 @@
+.filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.sidebar {
+    box-shadow: 0 0 5px var(--ColorGray_3);
+    border-radius: 7px;
+    width: clamp(200px, 50vw, 250px);
+    z-index: 100;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    background-color: var(--ColorWhiteBackground);
+    height: 100vh;
+}
+
+.iconON {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.iconOFF {
+    cursor: pointer;
+    top: clamp(5px, 1vw, 10px);
+    right: 2.3vw;
+    font-size: 1.9rem;
+    justify-self: right;
+    position: absolute;
+    color: var(--ColorWhite);
+}
+
+.menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ProfileLinks {
+    border-radius: 7px 7px 0 0;
+    padding: 1.5rem 1rem 1.5rem 0.7rem;
+    background-color: var(--ColorGray_7);
+    color: var(--ColorWhite);
+}
+
+.ProfileLinks>p {
+    font-size: 0.9rem;
+    color: var(--ColorGray_1);
+}
+
+.ProfileLinks>a {
+    text-decoration: none;
+    color: var(--ColorBlack);
+    display: grid;
+    justify-self: center;
+    background-color: var(--ColorWhite);
+    padding: 0.5rem 1rem;
+    font-weight: 450;
+    border-radius: 7px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0rem;
+    gap: 0.5rem;
+}
+
+.user svg {
+    font-size: 4rem;
+}
+
+.user p:nth-child(1) {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.user p:nth-child(2) {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--ColorGray_1);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav a {
+    width: 100%;
+    text-align: center;
+    color: unset;
+    text-decoration: none;
+    text-wrap: nowrap;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
+.ProfileLinks a:hover {
+    background-color: var(--ColorGray_3);
+}
+
+.NavigationLinks {
+    padding: 0 1rem 0 0.7rem;
+
+}
+
+.NavigationLinks p {
+    padding-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--ColorGray_6);
+}
+
+.NavigationLinks a:hover {
+    background-color: var(--ColorGray_1);
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+
+.actions p {
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.theme svg {
+    font-size: 1.3rem;
+}
+.logout {
+    border-radius: 5px;
+    border: none;
+    color: var(--ColorWhite);
+    font-family: unset;
+    background-color: var(--ColorGray_7);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+}
+
+.logout:hover {
+    color: var(--ColorGray_3);
+}
+.error {
+    margin-top: 0.2rem;
+    color: var(--ColorError)
+}
+@media (min-width: 576px) {
+    .filter {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sidebar {
+        top: clamp(5px, 1vw, 10px);
+        position: absolute;
+        height: 85vh;
+    }
+
+    .iconOFF {
+        top: 0px;
+        right: 0px;
+    }
+}

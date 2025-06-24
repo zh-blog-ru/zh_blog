@@ -1,0 +1,11 @@
+.main {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.4rem;
+}
+
+@media (min-width: 480px) {
+    .main {
+        gap: 1rem;
+    }
+}

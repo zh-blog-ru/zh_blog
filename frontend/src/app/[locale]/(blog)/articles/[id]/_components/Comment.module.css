@@ -1,0 +1,91 @@
+.comment {
+    display: grid;
+    grid-template-areas:
+        "I D"
+        "T T";
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+}
+
+.comment>div:nth-child(1) {
+    grid-area: I;
+    width: min-content;
+}
+
+.data {
+    grid-area: D;
+    display: flex;
+    justify-content: space-between;
+}
+
+.data button {
+    font-family: unset;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: var(--ColorBlack);
+}
+
+.data div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+}
+
+.data div p {
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite);
+    padding: 0.15rem 0.35rem;
+    border-radius: 5px;
+    font-weight: 500;
+
+}
+
+.data div span {
+    color: var(--ColorGray_6);
+}
+
+.text {
+    margin-left: 0.5rem;
+    grid-area: T;
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    gap: 0.5rem;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action div {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action button {
+    justify-self: left;
+    font-size: 0.83rem;
+    padding: 0.4rem 1rem;
+    font-family: unset;
+    font-weight: 500;
+    border: none;
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+@media (min-width: 480px) {
+    .comment {
+        grid-template-areas:
+            "I D"
+            "I T"
+    }
+
+    .text {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,44 @@
+.checkboxContainer {
+    margin-top: 0.3rem;
+    padding: 0rem 1rem;
+}
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    gap: 0.75rem;
+}
+
+.checkbox {
+    min-width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+    accent-color: var(--ColorBlack);
+    cursor: pointer;
+}
+
+.label {
+    font-size: 12px;
+    color: var(--ColorGray_6);
+    line-height: 1.4;
+}
+
+.label a {
+    color: var(--ColorGray_7);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.label a:hover {
+    text-decoration: underline;
+}
+
+.errors {
+    margin-top: 0.2rem;
+    list-style: none;
+    color: var(--ColorError);
+    font-size: 0.75rem;
+    display: grid;
+    gap: 0.2rem;
+    font-weight: 500;
+}

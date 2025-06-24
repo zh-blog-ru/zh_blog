@@ -1,0 +1,182 @@
+{
+    "blog": {
+        "blogLayout": {
+            "meta": {
+                "applicationName": "Zh Blog",
+                "keywords": [
+                    "Blog",
+                    "Next.js",
+                    "Nest.js",
+                    "PostgreSQL",
+                    "Zh",
+                    "React.js",
+                    "Redux"
+                ]
+            },
+            "header": {
+                "navigation": {
+                    "about me": "About me",
+                    "articles": "Articles"
+                },
+                "auth": {
+                    "login": "Login",
+                    "reg": "Register"
+                },
+                "menu": {
+                    "account": "Account",
+                    "profile": "Profile",
+                    "settings": "Settings",
+                    "login": "Login",
+                    "articles": "Articles",
+                    "about me": "About me",
+                    "thema": "Thema",
+                    "language": "Language",
+                    "links": "Links",
+                    "logout": "Logout"
+                }
+            },
+            "fotter": {
+                "privacy_policy": "Privacy policy",
+                "terms_of_use": "Terms of use",
+                "p": "We use only the necessary cookies for the operation of the website. Read more in",
+                "copyright": "All rights reserved."
+            }
+        },
+        "articles": {
+            "h2": "Last articles",
+            "meta": {
+                "title": "Articles",
+                "description": "This is my personal blog, where I write articles about frontend, backend and PostgreSQL."
+            },
+            "id": {
+                "h2": "Comments",
+                "button": "Send",
+                "no_comments": "No Comments",
+                "error_message": "It's not working yet(("
+            },
+            "not_articles": "There are no articles"
+        },
+        "reg": {
+            "h3": "Registration",
+            "meta": {
+                "title": "Registration",
+                "description": "Register on the Zh Blog"
+            },
+            "username": "Username",
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm password",
+            "button": "Sign up",
+            "meta_p": "Have account?",
+            "meta_a": "sign in",
+            "modal": {
+                "code": "Enter the code sent to"
+            },
+            "politic": {
+                "agree": "I agree to the",
+                "privacy_policy": "Privacy policy",
+                "terms_of_use": "Terms of use",
+                "and": "and"
+            }
+        },
+        "login": {
+            "h3": "Login",
+            "meta": {
+                "title": "Login",
+                "description": "Log in to your Zh Blog account"
+            },
+            "username": "Username",
+            "password": "Password",
+            "button": "Sign in",
+            "meta_p": "Have not account?",
+            "meta_a": "sign up",
+            "modal": {
+                "forget_the_password": "Forget the password?",
+                "button": "recover",
+                "code": "Enter the code sent to",
+                "enter_code": "Enter verification code",
+                "enter_new_password": "Enter your new password",
+                "enter_email": "Enter your email",
+                "new_password": "New password",
+                "confirm_password": "Confirm Password"
+            }
+        },
+        "profile": {
+            "meta": {
+                "title": "Profile",
+                "description": "User profile on Zh Blog"
+            },
+            "about_me": "About me",
+            "not_about_me": "It seems to be quiet here... The owner hasn't told you about himself yet 😊",
+            "write_about_me": "Write about yourself",
+            "comments": {
+                "title": "Your comments",
+                "empty": "You have no comments"
+            },
+            "likes": {
+                "title": "Liked articles",
+                "empty": "Add liked articles"
+            }
+        },
+        "settings": {
+            "meta": {
+                "title": "Settings",
+                "description": "User settings on the Zh Blog"
+            },
+            "change_email": {
+                "label": "Email",
+                "h2": "Change email address",
+                "code": "Enter the code sent to",
+                "enter_code": "Enter verification code",
+                "enter_new_email": "Enter new email",
+                "change": "Change",
+                "submit": "Submit"
+            },
+            "change_password": {
+                "label": "Password",
+                "h2": "Change password",
+                "change": "Change",
+                "password": "Password",
+                "new_password": "New password",
+                "confirm_password": "Confirm password",
+                "submit": "Submit"
+            },
+            "load_photo": {
+                "h3": "Profile picture",
+                "p": "We support JPEG, PNG and WebP no more than 2 MB",
+                "load": "Upload photo",
+                "delete": "Delete photo"
+            },
+            "change_username": {
+                "label": "Username"
+            },
+            "about_me": {
+                "label": "About me"
+            },
+            "h2": "Profile Settings",
+            "button": "Change Profile",
+            "delete": "Delete an account",
+            "not_delete": "Do not delete",
+            "delete_text": "Do you really want to delete your account ?",
+            "delete_warn": "You will not be able to restore the data"
+        },
+        "about_me": {
+            "meta": {
+                "title": "About me",
+                "description": "My Developer Path"
+            }
+        },
+        "terms": {
+            "meta": {
+                "title": "Terms of use",
+                "description": "Description of the Terms of use of Zh Blog"
+            }
+        },
+        "privacy": {
+            "meta": {
+                "title": "Privacy policy",
+                "description": "Description of the Privacy Policy of Zh Blog"
+            }
+        }
+    }
+}

@@ -1,0 +1,87 @@
+.resetPassword button {
+    border: none;
+    font-weight: 500;
+    background: none;
+    font-family: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+}
+
+.error {
+    color: var(--ColorError);
+}
+
+.filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.modal {
+    max-width: 450px;
+    border-radius: 10px;
+    background-color: var(--ColorWhite);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 90%;
+    padding: 1rem 1rem 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.close {
+    font-size: 1.3rem;
+    display: grid;
+    justify-self: right;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 1.5rem;
+}
+
+.steps {
+    display: grid;
+    gap: 2rem;
+}
+
+.steps>div {
+    display: grid;
+    grid-template-columns: min-content auto;
+    align-self: top;
+    gap: 0.8rem;
+}
+
+.steps>div>svg {
+    font-size: 1.5rem;
+}
+
+.steps>div>p {
+    align-self: center;
+    color: var(--ColorGray_3);
+}
+
+.form {
+    display: grid;
+    gap: 0.7rem;
+    max-width: 250px;
+}
+
+.form button {
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite);
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    justify-self: left;
+}

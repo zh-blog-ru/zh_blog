@@ -1,0 +1,128 @@
+.main {
+    max-width: 1400px;
+    width: 95%;
+    justify-self: center;
+    display: flex;
+    justify-content: space-between;
+    padding-top: clamp(5px, 1vw, 10px);
+    padding-bottom: clamp(5px, 1vw, 10px);
+    position: relative;
+}
+
+.main h1 {
+    margin: 0px;
+    color: var(--ColorBlack);
+    text-wrap: nowrap;
+    font-size: 1.5rem;
+}
+.main h1 a {
+    text-decoration: none;
+    color: unset;
+}
+.main h1 a:hover {
+    color: var(--ColorGray_4);
+
+
+}
+.navigation {
+    display: none;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.username a{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.username svg {
+    font-size: 1.5rem;
+    color: unset;
+}
+
+.username a {
+    font-weight: 500;
+    text-decoration: none;
+    color: unset;
+}
+
+.auth {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* gap: clamp(5px, 1vw, 15px); */
+}
+
+.auth a {
+    color: unset;
+    text-decoration: none;
+    border-radius: 7px;
+    text-wrap: nowrap;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+}
+
+.auth a:nth-child(2) {
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite)
+}
+
+.auth a:hover {
+    color: var(--ColorGray_3);
+}
+
+.locale {
+    display: none;
+}
+
+.theme {
+    display: none;
+}
+
+.burger, .burgerAuth {
+    display: flex;
+    align-items: center;
+}
+
+
+
+@media (min-width: 576px) {
+    .logoBlock {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .navigation {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .navigation a:hover {
+        color: var(--ColorGray_3);
+    }
+
+    .navigation a {
+        color: unset;
+        text-wrap: nowrap;
+    }
+
+    .burger {
+        display: none;
+    }
+
+    .locale {
+        font-size: 1.3rem;
+        display: block;
+    }
+
+    .theme {
+        font-size: 1.3rem;
+        display: block;
+    }
+
+}

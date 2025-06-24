@@ -1,0 +1,39 @@
+.input {
+    font-size: 1.2em;
+    padding: 0.5rem 1rem;
+    max-width: 200px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    letter-spacing: 15px;
+    text-align: center;
+    border-radius: 7px;
+    border: 1px solid var(--ColorGray_5);
+    background-color: var(--ColorWhiteBackground);
+    outline: none;
+}
+
+.input:focus {
+    border: 1.5px solid var(--ColorBlack);
+    /* border: 1.5px solid rgb(0, 53, 166); */
+    box-shadow: 0 0 5px var(--ColorBlack);
+}
+
+.label {
+    font-size: 1rem;
+}
+.label span {
+    font-weight: 600;
+}
+.errors {
+    list-style: none;
+    color: var(--ColorError);
+    font-size: 0.75rem;
+    display: grid;
+    gap: 0.2rem;
+    font-weight: 500;
+}
+
+.container {
+    margin-top: 0.8rem;
+    display: grid;
+    gap: 0.2rem;
+}

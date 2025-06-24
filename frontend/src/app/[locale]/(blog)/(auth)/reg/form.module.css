@@ -1,0 +1,46 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.form button {
+    font-size: 0.83rem;
+    align-self: center;
+    padding: 0.4rem 1rem;
+    font-family: unset;
+    color: unset;
+    border: none;
+    background-color: var(--ColorBlackBackground);
+    color: var(--ColorWhite);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    color: var(--ColorGray_5);
+}
+
+.captcha {
+    align-self: center;
+    margin-top: 0.3rem;
+}
+
+.metaData {
+    margin-top: 0.7rem;
+    display: grid;
+    justify-items: center;
+}
+.metaData{
+    font-size: 0.9rem;
+}
+.metaData span a {
+    margin-left: 0.5rem;
+    font-weight: 500;
+    color: unset;
+}
+
+.error {
+    margin-top: 0.3rem;
+    color: var(--ColorError)
+}

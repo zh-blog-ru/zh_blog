@@ -1,0 +1,23 @@
+.likes {
+    display: flex;
+    justify-self: right;
+    gap: 1.3rem
+}
+
+.likes button {
+    display: flex;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    color: var(--ColorBlack);
+    align-items: center;
+    font-family: unset;
+    transition: all 3s ease-in-out;
+}
+.likes svg {
+    font-size: 1.15rem;
+}
+
+.error {
+    color: var(--ColorError);
+}

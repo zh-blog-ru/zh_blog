@@ -1,0 +1,1 @@
+export type CodeType = 'old_email' | 'new_email' | 'registration' | 'reset_password'

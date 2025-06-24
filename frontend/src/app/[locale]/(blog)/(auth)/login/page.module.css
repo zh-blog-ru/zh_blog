@@ -1,0 +1,16 @@
+.main {
+    color: var(--ColorBlack);
+    align-self: center;
+    justify-self: center;
+    background-color: var(--ColorGray_0);
+    padding: 1rem;
+    border-radius: 10px;
+    width: clamp(200px, 80vw, 370px);
+}
+
+.main > h3{
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 1.3rem 0rem;
+    font-weight: 400;
+}

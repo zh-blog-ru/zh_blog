@@ -1,0 +1,29 @@
+.main {
+    width: 100%;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.main div {
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 450px;
+}
+
+.main div textarea {
+    min-height: 100px;
+    font-size: 1rem;
+    padding: 0.7rem;
+    border-radius: 4px;
+    border: 1px solid var(--ColorGray_5);
+    background-color: var(--ColorWhiteBackground);
+    font-family: unset;
+    resize: none;
+    overflow: hidden
+}
+
+.main div textarea:focus {
+    outline: none;
+    border: 1.5px solid var(--ColorBlack);
+}

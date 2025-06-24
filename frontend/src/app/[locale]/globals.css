@@ -1,0 +1,63 @@
+/* Стили очень тупые...)) Но это мой первый опыт... Теперь знаю как делать приложение с темной и светлой темами */
+
+:root {
+  --BlogLayoutBackround: #FFFFFF 0%, #d5d5d5 100%;
+  --ColorWhite: #FCFCFC;
+  --ColorBlack: #252525;
+  --ColorBlackBackground: #252525;
+  --ColorWhiteBackground: #FCFCFC;
+  --ColorGray_7: hsl(0, 0%, 20%);
+  --ColorGray_6: hsl(0, 0%, 30%);
+  --ColorGray_5: hsl(0, 0%, 40%);
+  --ColorGray_4: hsl(0, 0%, 50%);
+  --ColorGray_3: hsl(0, 0%, 60%);
+  --ColorGray_2: hsl(0, 0%, 70%);
+  --ColorGray_1: hsl(0, 0%, 80%);
+  --ColorGray_0: hsl(0, 0%, 90%);
+  --ColorError: rgb(255, 22, 22);
+  --ColorSuccess: rgb(74, 234, 53);
+  --light: none;
+  --moon: block
+}
+
+
+[data-theme='dark'] {
+  --BlogLayoutBackround: #000000 0%, #424242 100%;
+  --ColorBlack: #FCFCFC;
+  --ColorWhite: #252525;
+  --ColorWhiteBackground: #252525;
+  --ColorBlackBackground: #FCFCFC;
+  --ColorGray_0: hsl(0, 0%, 10%);
+  --ColorGray_1: hsl(0, 0%, 20%);
+  --ColorGray_2: hsl(0, 0%, 30%);
+  --ColorGray_3: hsl(0, 0%, 40%);
+  --ColorGray_4: hsl(0, 0%, 50%);
+  --ColorGray_5: hsl(0, 0%, 60%);
+  --ColorGray_6: hsl(0, 0%, 70%);
+  --ColorGray_7: hsl(0, 0%, 80%);
+  --ColorError: rgb(255, 24, 24);
+  --light: block;
+  --moon: none
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(14px, 3.5vw, 15px);
+}
+
+body svg {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* @media (min-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+} */

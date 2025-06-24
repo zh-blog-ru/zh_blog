@@ -1,0 +1,81 @@
+.page {
+    position: relative;
+}
+
+.img_container {
+    height: auto;
+    max-height: 300px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9
+}
+
+.main {
+    padding: 1.5rem 0px;
+    max-width: 1400px;
+    justify-self: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.text h1 {
+    font-size: 1.7rem;
+}
+
+.markdown h1 {
+    margin-bottom: 0.5em;
+}
+
+.markdown h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.markdown p {
+    line-height: 1.6;
+    margin: 0.8rem 0rem;
+}
+
+.markdown ul {
+    list-style-type: disc;
+    margin-left: 1.8rem;
+    margin-bottom: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+.markdown ol {
+    list-style-type: decimal;
+    margin-left: 2em;
+    margin-bottom: 1em;
+}
+
+.markdown pre {
+    border: 1px solid var(--ColorGray_5);
+    background-color: var(--ColorGray_0);
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 5px;
+    white-space: pre-wrap;
+}
+
+.markdown pre code {
+    padding: 0;
+    background-color: transparent;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+    overflow-x: auto;
+    word-break: break-word
+}
+
+.comments {
+    max-width: 600px;
+    width: 100%;
+}
+
+.comments h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.7rem;
+}

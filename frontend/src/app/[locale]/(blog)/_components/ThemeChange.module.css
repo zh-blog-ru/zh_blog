@@ -1,0 +1,11 @@
+
+
+
+.light {
+    display: var(--light);
+}
+
+
+.moon {
+    display: var(--moon);
+}
