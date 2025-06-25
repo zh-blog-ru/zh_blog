@@ -19,7 +19,7 @@ export default function ProfileImage({
             {
                 !isError && (profile_picture_url  || profile_picture_blob)?
                     <Image
-                        src={profile_picture_blob || `https://blog.com/api/v1/file/photo/public/${profile_picture_url}`}
+                        src={profile_picture_blob || `https://zhblog.ru/api/v1/file/photo/public/${profile_picture_url}`}
                         alt="user photo"
                         width={size}
                         height={size}

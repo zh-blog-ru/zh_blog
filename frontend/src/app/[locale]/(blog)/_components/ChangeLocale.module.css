@@ -45,5 +45,3 @@
 .list li:hover {
   background-color: var(--ColorGray_1);
 }
-
-@media (min-width: 576px) {}

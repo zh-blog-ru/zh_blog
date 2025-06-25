@@ -15,64 +15,37 @@ interface LocalizedRouter {
   changeLocale: (newLocale: string, options?: { scroll?: boolean; shallow?: boolean }) => void;
 }
 
+const getLocalizedHref = (href: string, locale: string) => {
+  const normalizedHref = href.startsWith('/') ? href : `/${href}`;
+  return href.startsWith(`/${locale}/`) || href === `/${locale}` 
+    ? href 
+    : `/${locale}${normalizedHref}`;
+}; 
+
 export const useLocalizedRouter = (): LocalizedRouter => {
   const router = useRouter();
   const cookiesLocale = useAppSelector(state => state.locale.locale);
   const locale = cookiesLocale || process.env.NEXT_PUBLIC_DEFAULT_LOCALE || defaultLocale;
 
-  const localizedPush = useCallback(
-    (href: string, options?: { scroll?: boolean; shallow?: boolean }) => {
-      const hrefWithLocale = href.startsWith(`/${locale}/`) || href === `/${locale}` 
-        ? href 
-        : `/${locale}${href.startsWith('/') ? href : `/${href}`}`;
-      router.push(sanitizeUrl(hrefWithLocale), options);
-    },
-    [router, locale]
-  );
+  const createLocalizedHandler = (method: 'push' | 'replace' | 'prefetch') => 
+    useCallback((href: string, options?: any) => {
+      const hrefWithLocale = getLocalizedHref(href, locale);
+      return router[method](sanitizeUrl(hrefWithLocale), options);
+    }, [router, locale]);
 
-  const localizedReplace = useCallback(
-    (href: string, options?: { scroll?: boolean; shallow?: boolean }) => {
-      const hrefWithLocale = href.startsWith(`/${locale}/`) || href === `/${locale}`
-        ? href 
-        : `/${locale}${href.startsWith('/') ? href : `/${href}`}`;
-      router.replace(sanitizeUrl(hrefWithLocale), options);
-    },
-    [router, locale]
-  );
-
-  const localizedPrefetch = useCallback(
-    (href: string) => {
-      const hrefWithLocale = href.startsWith(`/${locale}/`) || href === `/${locale}`
-        ? href 
-        : `/${locale}${href.startsWith('/') ? href : `/${href}`}`;
-      return router.prefetch(sanitizeUrl(hrefWithLocale));
-    },
-    [router, locale]
-  );
-
-  const changeLocale = useCallback(
-    (newLocale: string, options?: { scroll?: boolean; shallow?: boolean }) => {
-      // Получаем текущий путь (без локали)
-      let currentPath = window.location.pathname;
-      
-      // Удаляем текущую локаль из пути, если она есть
-      if (locale && currentPath.startsWith(`/${locale}`)) {
-        currentPath = currentPath.slice(locale.length + 1) || '/';
-      }
-      
-      // Создаем новый путь с новой локалью
-      const newPath = `/${newLocale}${currentPath.startsWith('/') ? currentPath : `/${currentPath}`}`;
-      
-      // Переходим по новому пути
-      router.push(sanitizeUrl(newPath), options);
-    },
-    [router, locale]
-  );
+  const changeLocale = useCallback((newLocale: string, options?: any) => {
+    let currentPath = window.location.pathname;
+    if (locale && currentPath.startsWith(`/${locale}`)) {
+      currentPath = currentPath.slice(locale.length + 1) || '/';
+    }
+    const newPath = `/${newLocale}${currentPath.startsWith('/') ? currentPath : `/${currentPath}`}`;
+    router.push(sanitizeUrl(newPath), options);
+  }, [router, locale]);
 
   return {
-    push: localizedPush,
-    replace: localizedReplace,
-    prefetch: localizedPrefetch,
+    push: createLocalizedHandler('push'),
+    replace: createLocalizedHandler('replace'),
+    prefetch: createLocalizedHandler('prefetch'),
     back: router.back,
     forward: router.forward,
     refresh: router.refresh,

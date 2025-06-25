@@ -20,6 +20,7 @@ export default function Form({
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const { errors, handleError, resetErrors } = useErrorHandler()
+    const [isDisable, setIsDisable] = useState(false)
     const [loginUser, {
         isLoading
     }] = useLoginUserMutation()
@@ -34,6 +35,7 @@ export default function Form({
             .unwrap()
             .then(
                 ({ id }) => {
+                    setIsDisable(true)
                     const redirect_url = sessionStorage.getItem('redirect_url')
                     sessionStorage.removeItem('redirect_url')
                     if (redirect_url) {
@@ -54,7 +56,7 @@ export default function Form({
             <form className={s.form} action={LoginAction}>
                 <Username label={dict.username} username={username} setUsername={setUsername} errors={errors['username']}/>
                 <Password label={dict.password} password={password} setPassword={setPassword} errors={errors['password']}/>
-                <button disabled={isLoading}>
+                <button disabled={isLoading || isDisable}>
                     {dict.button}
                 </button>
             </form>
