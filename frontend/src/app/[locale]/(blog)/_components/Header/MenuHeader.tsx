@@ -21,7 +21,7 @@ export default function MenuHeaderAuth({
   dict: DictionaryType['blog']['blogLayout']['header']['menu']
 }) {
   const [menuIsActive, setMenuIsActive] = useState<boolean>(false)
-  const [logout, {isLoading}] = useLogoutUserMutation()
+  const [logout, { isLoading }] = useLogoutUserMutation()
   const { errors, handleError, resetErrors } = useErrorHandler()
 
   const handleLogout = () => {
@@ -46,7 +46,9 @@ export default function MenuHeaderAuth({
             <div className={s.filter}>
             </div>
             <div className={s.sidebar}>
-              <IoMdClose onClick={() => setMenuIsActive(false)} className={`${s.iconOFF}`} />
+              <div className={`${s.iconOFF}`}>
+                <IoMdClose onClick={() => setMenuIsActive(false)}  />
+              </div>
               <div className={s.menu}>
                 <div className={s.links}>
                   <div className={s.ProfileLinks}>
