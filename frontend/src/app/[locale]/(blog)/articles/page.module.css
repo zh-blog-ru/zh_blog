@@ -53,7 +53,8 @@
     display: flex;
     gap: 0.3rem;
 }
-.metaData a {
+/* .metaData a { */
+.metaData span {
     text-decoration: none;
     color: var(--ColorWhite);
     background: var(--ColorBlackBackground);

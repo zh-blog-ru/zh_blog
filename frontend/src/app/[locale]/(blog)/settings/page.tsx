@@ -36,14 +36,6 @@ export default async function page({
         notFound();
     }
     const dict = (await getDictionary(locale)).blog.settings
-    // const user: PrivateUserInterfaces ={
-    //     id: 1,
-    //     username: 'vadim333',
-    //     email: 'zzjj@ma.ru',
-    //     profile_picture_url: null,
-    //     about_me: 'I`m gaaaaay',
-    //     isOwner: true
-    // }
     return (
         <div className={s.main}>
             <h2>

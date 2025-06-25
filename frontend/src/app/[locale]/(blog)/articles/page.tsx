@@ -60,9 +60,11 @@ export default async function BlogArticlesPage({
                 <div className={s.metaData}>
                   <div className={s.themes}>
                     {item.theme.map((theme, index) => (
-                      <Link href={'/theme/' + theme} key={index}>
+                      // <Link href={'/theme/' + theme} key={index}>
+                      <span>
                         {theme}
-                      </Link>
+                      </span>
+                      // </Link>
                     ))}
                   </div>
                   <div className={s.time_info}>

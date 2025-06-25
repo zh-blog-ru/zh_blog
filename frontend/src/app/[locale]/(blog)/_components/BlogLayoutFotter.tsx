@@ -7,7 +7,7 @@ import LocalizedLink from '@/i18n/routes/LocalizedLink'
 
 const irish_grover = Irish_Grover({
   weight: '400',
-  // preload: false,
+  preload: false,
 })
 
 export default async function BlogLayoutFotter({ params }: { params: Promise<{ locale: LocaleType }> }) {
