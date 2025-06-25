@@ -33,7 +33,7 @@ export default function AddComment({
                 setCount(0)
             })
             .catch((err) => {
-                if (err.status === 401) {
+                if (err.statusCode === 401) {
                     sessionStorage.setItem('redirect_url', pathname)
                     router.push(`/login`)
                 } else {

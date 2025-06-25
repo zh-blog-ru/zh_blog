@@ -36,14 +36,14 @@ export default function Likes({
     const likes = data[0]
     const disLikes = data[1]
     const setLikesFunc = (article_id: number, isLike: boolean) => {
-        console.log('123123123')
         setLikes({ article_id, isLike })
             .unwrap()
             .catch((e) => {
-                if (e.status === 401) {
+                if (e.statusCode === 401) {
                     sessionStorage.setItem('redirect_url', pathname)
                     router.push(`/login`)
                 } else {
+                    console.log(2)
                     setError(error_message)
                     setTimeout(() => {
                         setError(null);
