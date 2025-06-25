@@ -21,6 +21,12 @@ export async function generateMetadata(
   }
 }
 
+
+const Name = {
+  ru: 'Жуков Вадим',
+  en: 'Zhukov Vadim'
+}
+
 const PrivacyPolicy = async ({
   params
 }: Props) => {
@@ -29,7 +35,7 @@ const PrivacyPolicy = async ({
   const effectiveDate = "25.06.2025"; // Замените на актуальную дату
   const blogName = "Zh Blog"; // Замените на название вашего блога
   const blogAddress = "zhblog.ru"; // Замените на адрес вашего блога
-  const yourName = "Жуков Вадим"; // Замените на ваш адрес, если необходимо
+  const yourName = Name[locale]; // Замените на ваш адрес, если необходимо
   const yourEmail = "zhblog.ru@yandex.ru"; // Замените на ваш адрес, если необходимо
 
 
