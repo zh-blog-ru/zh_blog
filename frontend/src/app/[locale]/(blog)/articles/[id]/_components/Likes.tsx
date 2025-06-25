@@ -36,6 +36,7 @@ export default function Likes({
     const likes = data[0]
     const disLikes = data[1]
     const setLikesFunc = (article_id: number, isLike: boolean) => {
+        console.log('123123123')
         setLikes({ article_id, isLike })
             .unwrap()
             .catch((e) => {
