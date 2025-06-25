@@ -53,8 +53,8 @@
     display: flex;
     gap: 0.3rem;
 }
-/* .metaData a { */
-.metaData span {
+/* .themes a { */
+.themes span {
     text-decoration: none;
     color: var(--ColorWhite);
     background: var(--ColorBlackBackground);
@@ -68,7 +68,7 @@
     border-radius: 10px;
 }
 
-.metaData a:hover {
+.themes span:hover {
     color: var(--ColorGray_2);
 }
 
