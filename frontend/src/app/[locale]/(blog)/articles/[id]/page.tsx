@@ -100,6 +100,3 @@ export default async function page({
         </div>
     )
 }
-
-
-// layout, i18n 

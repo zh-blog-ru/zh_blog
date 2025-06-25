@@ -26,10 +26,11 @@ const PrivacyPolicy = async ({
 }: Props) => {
   const { locale } = await params
   console.log('privacy')
-  const effectiveDate = "[Дата]"; // Замените на актуальную дату
+  const effectiveDate = "25.06.2025"; // Замените на актуальную дату
   const blogName = "Zh Blog"; // Замените на название вашего блога
-  const blogAddress = "[Адрес Блога]"; // Замените на адрес вашего блога
-  const yourName = "[Ваше Имя]"; // Замените на ваш адрес, если необходимо
+  const blogAddress = "zhblog.ru"; // Замените на адрес вашего блога
+  const yourName = "Жуков Вадим"; // Замените на ваш адрес, если необходимо
+  const yourEmail = "zhblog.ru@yandex.ru"; // Замените на ваш адрес, если необходимо
 
 
   const filePath = path.join(process.cwd(), `file/politic/privacy`, `privacy_${locale}.html`);
@@ -38,6 +39,7 @@ const PrivacyPolicy = async ({
   htmlContent = htmlContent.replace(/\{blogName\}/g, blogName);
   htmlContent = htmlContent.replace(/\{blogAddress\}/g, blogAddress);
   htmlContent = htmlContent.replace(/\{yourName\}/g, yourName);
+  htmlContent = htmlContent.replace(/\{yourEmail\}/g, yourEmail);
 
   return (
     <div dangerouslySetInnerHTML={{ __html: htmlContent }} className={s.container} />

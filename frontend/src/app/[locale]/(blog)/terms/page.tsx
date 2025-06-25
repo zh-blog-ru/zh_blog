@@ -25,11 +25,11 @@ const PrivacyPolicy = async ({
   params
 }: Props) => {
   const { locale } = await params
-  const effectiveDate = "[Дата]"; // Замените на актуальную дату
+  const effectiveDate = "25.06.2025"; // Замените на актуальную дату
   const blogName = "Zh Blog"; // Замените на название вашего блога
-  const blogAddress = "[Адрес Блога]"; // Замените на адрес вашего блога
-  const yourName = "[Ваше Имя]"; // Замените на ваш адрес, если необходимо
-  console.log('term')
+  const blogAddress = "zhblog.ru"; // Замените на адрес вашего блога
+  const yourName = "Жуков Вадим"; // Замените на ваш адрес, если необходимо
+  const yourEmail = "zhblog.ru@yandex.ru"; // Замените на ваш адрес, если необходимо
 
   const filePath = path.join(process.cwd(), `file/politic/terms`, `terms_${locale}.html`);
   let htmlContent = await readFile(filePath, 'utf8');
@@ -37,6 +37,7 @@ const PrivacyPolicy = async ({
   htmlContent = htmlContent.replace(/\{blogName\}/g, blogName);
   htmlContent = htmlContent.replace(/\{blogAddress\}/g, blogAddress);
   htmlContent = htmlContent.replace(/\{yourName\}/g, yourName);
+  htmlContent = htmlContent.replace(/\{yourEmail\}/g, yourEmail);
 
   return (
     <div dangerouslySetInnerHTML={{ __html: htmlContent }} className={s.container} />
