@@ -29,6 +29,7 @@
     "@nestjs/mapped-types": "^2.1.0",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.10",
+    "@nestjs/throttler": "^6.4.0",
     "@types/file-type": "^10.6.0",
     "@types/jsdom": "^21.1.7",
     "@types/nodemailer": "^6.4.17",

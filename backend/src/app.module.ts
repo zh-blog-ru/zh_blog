@@ -16,6 +16,7 @@ import { CaptchaModule } from './captcha/captcha.module';
 import { FileModule } from './file/file.module';
 import { CsrfModule } from './csrf/csrf.module';
 import { CsrfMiddleware } from './csrf/csrf.middleware';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [AuthModule, UsersModule, ArticleModule, DatabaseModule, RegistrationModule,
@@ -40,6 +41,14 @@ import { CsrfMiddleware } from './csrf/csrf.middleware';
     CaptchaModule,
     FileModule,
     CsrfModule,
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 60000,
+          limit: 15,
+        },
+      ],
+    }),
   ],
   providers: [{
     provide: APP_GUARD,
