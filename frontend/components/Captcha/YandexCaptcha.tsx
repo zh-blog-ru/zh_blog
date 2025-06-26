@@ -106,15 +106,15 @@ export default function YandexCaptcha({
                 }}
                 strategy="lazyOnload"
             />
-            {/* <div
+            <div
                 className={s.captchaContainer}
-            > */}
+            >
                 <div
                     ref={captchaRef}
                     id="yandex-captcha-container"
-                />
-            {/* </div> */}
-
+                >
+                </div>
+            </div>
         </>
     );
 }
