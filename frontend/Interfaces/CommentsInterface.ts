@@ -1,5 +1,6 @@
 export interface CommentsInterfaces {
     id: number,
+    user_id: number,
     create_at: Date,
     update_at: Date,
     data: string,

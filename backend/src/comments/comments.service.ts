@@ -17,7 +17,7 @@ export class CommentsService {
         const offset = (page - 1) * limit
         try {
             const res = (await this.databaseService.query(`
-            select c.id, c.create_at, c.data, c.update_at, c.parent_comment_id, u.username, u.profile_picture_url,
+            select c.id, c.create_at, c.user_id,  c.data, c.update_at, c.parent_comment_id, u.username, u.profile_picture_url,
             (c.user_id = $4) AS "isOwner"
             from comments c JOIN users u ON c.user_id = u.id
             where article_id=$1 order by c.id desc limit $2 offset $3

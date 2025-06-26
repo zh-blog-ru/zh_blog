@@ -6,6 +6,7 @@ import s from './Comment.module.css'
 import CommentForm from '../../../../../../../components/CommentForm/CommentForm'
 import { useErrorHandler } from '../../../../../../../hooks/useErrorHandler'
 import { useUpdateCommetsMutation } from '@/_redux/api/Api'
+import LocalizedLink from '@/i18n/routes/LocalizedLink'
 
 type Props = {
     comment: CommentsInterfaces,
@@ -45,7 +46,9 @@ export default React.memo(function Comment({
     return (
         <div className={s.comment} ref={ref}>
             <div>
-                <ProfileImage size={50} profile_picture_url={comment.profile_picture_url} />
+                <LocalizedLink href={`/profile/${comment.user_id}`}>
+                    <ProfileImage size={50} profile_picture_url={comment.profile_picture_url} />
+                </LocalizedLink>
             </div>
             <div className={s.data}>
                 <div>
