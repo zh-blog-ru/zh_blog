@@ -28,6 +28,7 @@
 .iconOFF {
     text-align: right;
 }
+
 .iconOFF svg {
     margin-top: 0.8rem;
     margin-right: 0.8rem;
@@ -35,8 +36,9 @@
     font-size: 2rem;
     color: var(--ColorBlack);
 }
+
 .menu {
-    height: 90%;
+    min-height: 92%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,7 +51,8 @@
 }
 
 .ProfileLinks {
-    /* border-radius: 7px 7px 0 0; */
+    border-radius: 0.3rem;
+    display: grid;
     padding: 1.5rem 1rem 1.5rem 0.7rem;
     background-color: var(--ColorGray_7);
     color: var(--ColorWhite);
@@ -63,8 +66,9 @@
 .ProfileLinks>a {
     text-decoration: none;
     color: var(--ColorBlack);
-    display: grid;
     justify-self: center;
+    align-content: center;
+    text-align: center;
     background-color: var(--ColorWhite);
     padding: 0.5rem 1rem;
     font-weight: 450;
@@ -146,6 +150,7 @@
 .theme svg {
     font-size: 1.3rem;
 }
+
 .logout {
     border-radius: 5px;
     border: none;
@@ -154,18 +159,19 @@
     background-color: var(--ColorGray_7);
     font-size: 1rem;
     padding: 0.5rem 1rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1.2rem;
+    margin-top: 1.5rem;
     cursor: pointer;
 }
 
 .logout:hover {
     color: var(--ColorGray_3);
 }
+
 .error {
     margin-top: 0.2rem;
     color: var(--ColorError)
 }
+
 @media (min-width: 576px) {
     .filter {
         display: none;
@@ -175,6 +181,7 @@
 @media (min-width: 1200px) {
     .sidebar {
         top: clamp(5px, 1vw, 10px);
+        border-radius: 0.3rem;
         position: absolute;
         height: 85vh;
     }
@@ -182,5 +189,9 @@
     .iconOFF {
         top: 0px;
         right: 0px;
+    }
+
+    .iconOFF svg {
+        margin: 0px;
     }
 }

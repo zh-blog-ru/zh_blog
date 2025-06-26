@@ -6,10 +6,8 @@ import { readFileSync } from 'fs';
 import { HttpFormException } from 'Generated/HttpFormException';
 import { I18nContext, I18nService } from 'nestjs-i18n';
 import * as nodemailer from 'nodemailer'
-import path from 'path';
 import { CaptchaService } from 'src/captcha/captcha.service';
 import { I18nTranslations } from 'src/i18n/generated/i18n.generated';
-import { ValidationService } from 'src/validation/validation.service';
 
 export type EmailType = 'old_email' | 'new_email' | 'reset_password' | 'registration'
 

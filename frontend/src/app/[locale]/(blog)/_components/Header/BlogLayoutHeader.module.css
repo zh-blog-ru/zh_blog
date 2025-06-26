@@ -8,6 +8,7 @@
     padding-top: clamp(5px, 1vw, 10px);
     padding-bottom: clamp(5px, 1vw, 10px);
     position: relative;
+    height: 3rem;
 }
 
 .main h1 {
