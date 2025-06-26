@@ -19,6 +19,7 @@ import { useErrorHandler } from '../../../../../../hooks/useErrorHandler'
 import Code from '../../../../../../components/Code/Code'
 import Email from '../../../../../../components/Email/Email'
 import YandexCaptcha, { CaptchaHandle } from '../../../../../../components/Captcha/YandexCaptcha'
+import Captcha from '../../../../../../components/Captcha/Captcha'
 
 declare global {
     interface Window {
@@ -202,7 +203,7 @@ export default function ChangeEmail({ user_email, dict }: ChangeEmailProps) {
                                         <PiNumberCircleTwoFill />
                                         <div className={s.stepTwo}>
                                             <Email email={newEmail} setEmail={setNewEmail} errors={errors['email']} label={dict.enter_new_email} />
-                                            <YandexCaptcha callback={setCaptchaToken} ref={ref} />
+                                            <Captcha callback={setCaptchaToken} ref={ref} />
                                             <button type="button" disabled={!captchaToken && isLoading} onClick={handleSubmit}>
                                                 {dict.submit}
                                             </button>

@@ -11,6 +11,7 @@ import { useErrorHandler } from '../../../../../../hooks/useErrorHandler'
 import Code from '../../../../../../components/Code/Code'
 import Password from '../../../../../../components/Password/Password'
 import YandexCaptcha, { CaptchaHandle } from '../../../../../../components/Captcha/YandexCaptcha'
+import Captcha from '../../../../../../components/Captcha/Captcha'
 
 export default function Modal({
     dict
@@ -32,7 +33,7 @@ export default function Modal({
     const ref_captcha = useRef<CaptchaHandle>(null)
 
     const [sendCode] = useSendCodeResetPasswordMutation()
-    const [checkCode, {isLoading: IsCheckCode}] = useCheckCodeResetPasswordMutation()
+    const [checkCode, { isLoading: IsCheckCode }] = useCheckCodeResetPasswordMutation()
 
 
 
@@ -106,7 +107,7 @@ export default function Modal({
                                         <PiNumberCircleOneFill />
                                         <form onSubmit={handleSubmit} className={s.form}>
                                             <Email label={dict.enter_email} email={email} setEmail={setEmail} errors={errors['email']} />
-                                            <YandexCaptcha callback={setCaptchaToken} ref={ref_captcha} />
+                                            <Captcha callback={setCaptchaToken} ref={ref_captcha} />
                                             <button>Send</button>
                                         </form>
                                     </>
@@ -123,7 +124,7 @@ export default function Modal({
                                 {step === 2 ? (
                                     <>
                                         <PiNumberCircleTwoFill />
-                                        <Code label={dict.code} code={code} setCode={onChangeFunc} errors={errors['code']} email={email} disabled={IsCheckCode}/>
+                                        <Code label={dict.code} code={code} setCode={onChangeFunc} errors={errors['code']} email={email} disabled={IsCheckCode} />
                                     </>
                                 ) : (
                                     <>

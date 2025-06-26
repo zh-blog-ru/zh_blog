@@ -11,6 +11,7 @@ import { useErrorHandler } from '../../../../../../hooks/useErrorHandler'
 import LocalizedLink from '@/i18n/routes/LocalizedLink'
 import PrivacyCheckbox from './PrivacyCheckbox'
 import YandexCaptcha, { CaptchaHandle } from '../../../../../../components/Captcha/YandexCaptcha'
+import Captcha from '../../../../../../components/Captcha/Captcha'
 
 declare global {
     interface Window {
@@ -75,7 +76,7 @@ export default function Form({ dict }: FormProps) {
                 <Password label={dict.confirmPassword} password={confirmPassword} setPassword={setConfirmPassword} errors={errors['confirmPassword']} />
 
                 <div className={s.captcha}>
-                    <YandexCaptcha callback={setCaptchaToken} ref={ref_captcha} />
+                    <Captcha callback={setCaptchaToken} ref={ref_captcha} />
                 </div>
                 <PrivacyCheckbox onChange={setIsPolitics} dict={dict.politic} errors={errors['politic'] as string[]} />
                 <button disabled={!captchaToken || isLoading || !isPolitics}>
