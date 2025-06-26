@@ -4,8 +4,12 @@ import { ArticleInterface } from '../../../../../../Interfaces/ArticleInterface'
 import Image from 'next/image';
 import s from './page.module.css'
 import { Marked } from 'marked';
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/core';
 import { markedHighlight } from 'marked-highlight';
+import typescript from 'highlight.js/lib/languages/typescript';
+import bash from 'highlight.js/lib/languages/bash';
+import json from 'highlight.js/lib/languages/json';
+import plaintext from 'highlight.js/lib/languages/plaintext';
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import ListComments from './_components/ListComments';
@@ -16,11 +20,11 @@ import Link from 'next/link';
 import AddComment from './_components/AddComment';
 import { getArticles } from '../../../../../../serverAction/getArticles';
 import { Metadata } from 'next';
+import Syntax from './Syntax';
 
 type Props = {
     params: Promise<{ id: number, locale: LocaleType }>;
 }
-export const revalidate = 3600
 export const dynamicParams = true
 export async function generateStaticParams() {
     const articles: Omit<ArticleInterface, 'content'>[] = await getArticles('ru')
@@ -34,7 +38,6 @@ export async function generateStaticParams() {
         }
     }
     return paths
-    // return [{ locale: 'en', id: '1' }, { locale: 'ru', id: '1' }]
 }
 
 export async function generateMetadata(
@@ -67,8 +70,14 @@ export default async function page({
             emptyLangClass: 'hljs',
             langPrefix: 'hljs language-',
             highlight(code, lang, info) {
+                hljs.registerLanguage('typescript', typescript);
+                hljs.registerLanguage('shell', bash);
+                hljs.registerLanguage('bash', bash);
+                hljs.registerLanguage('json', json);
+                hljs.registerLanguage('plaintext', plaintext);
                 const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-                return hljs.highlight(code, { language }).value;
+                const formanCode = hljs.highlight(code, { language }).value;
+                return formanCode;
             }
         })
     );
@@ -85,8 +94,11 @@ export default async function page({
                     <h1>
                         {article.title}
                     </h1>
-                    <div dangerouslySetInnerHTML={{ __html: html }} className={s.markdown}>
-                    </div>
+                    <Syntax>
+                        <div dangerouslySetInnerHTML={{ __html: html }} className={s.markdown}>
+                        </div>
+                    </Syntax>
+
                 </main>
                 <Likes article_id={id} error_message={dict.error_message} />
                 <div className={s.comments}>

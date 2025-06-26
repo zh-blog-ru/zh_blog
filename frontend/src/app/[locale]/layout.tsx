@@ -5,8 +5,6 @@ import { locales, LocaleType } from "@/i18n/locales";
 import { notFound } from "next/navigation";
 import StoreProvider from "@/_redux/StoreProvider";
 import { ThemeProvider } from 'next-themes'
-import './styleSyntaxLight.css'
-import './styleSyntaxDark.css'
 import Script from "next/script";
 import { getDictionary } from "@/i18n/getDictionary";
 
@@ -88,5 +86,5 @@ export default async function LocaleLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

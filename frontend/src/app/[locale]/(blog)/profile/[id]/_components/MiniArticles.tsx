@@ -18,7 +18,6 @@ export async function MiniArticles({
             </div>
         )
     }
-    articles = [...articles, ...articles, ...articles,]
     return (
         <div className={s.likes}>
             <ShowArticles interTitle={dict.title}>

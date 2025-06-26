@@ -30,7 +30,11 @@
 
 .markdown h2 {
     font-size: 1.5em;
-    margin-bottom: 0.5em;
+    margin: 0.8rem 0;
+}
+
+.markdown h4 {
+    margin: 0.8rem 0;
 }
 
 .markdown p {
@@ -49,6 +53,10 @@
     list-style-type: decimal;
     margin-left: 2em;
     margin-bottom: 1em;
+}
+
+.markdown li {
+    margin: 0.5rem 0rem;
 }
 
 .markdown pre {

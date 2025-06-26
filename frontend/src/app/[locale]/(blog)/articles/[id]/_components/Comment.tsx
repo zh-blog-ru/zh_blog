@@ -18,7 +18,6 @@ export default React.memo(function Comment({
     ref,
     article_id
 }: Props) {
-    console.log(comment)
     const [isChange, setIsChange] = useState<boolean>(false)
     const [text, setText] = useState<string>(comment.data)
     const [count, setCount] = useState<number>(comment.data.length)

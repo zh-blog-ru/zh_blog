@@ -83,11 +83,9 @@ export const Api = createApi({
                     credentials: 'include'
                 }
             },
-            // invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
             async onQueryStarted({ article_id, comment }, { dispatch, queryFulfilled }) {
                 try {
                     const { data: setComments } = await queryFulfilled
-                    console.log('setComments: ', setComments)
                     const patchResult = dispatch(
                         Api.util.updateQueryData('getCommentsByArticleId', { article_id }, (draft) => {
                             if (setComments) {

@@ -1,13 +1,12 @@
 import React from 'react'
 import s from './page.module.css'
 import Image from 'next/image'
-import Link from 'next/link'
 import { LocaleType } from '@/i18n/locales'
 import { getDictionary } from '@/i18n/getDictionary'
 import Time from './_components/Time'
 import { getArticles } from '../../../../../serverAction/getArticles'
 import LocalizedLink from '@/i18n/routes/LocalizedLink'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata} from 'next'
 
 type Props = {
   params: Promise<{ locale: LocaleType }>
@@ -23,7 +22,6 @@ export async function generateMetadata(
   }
 }
 
-export const revalidate = 3600
 
 export default async function BlogArticlesPage({
   params
