@@ -60,18 +60,23 @@ export default function YandexCaptcha({
     }));
 
     const initCaptcha = useCallback(() => {
+        postErros({ok: '1'})
+        postErros({ok: window.smartCaptcha})
         if (captchaRef.current && window.smartCaptcha) {
             // Remove previous widget if exists
+            postErros({ok: '2'})
             if (widgetIdRef.current != null) {
+                postErros({ok: '3'})
                 window.smartCaptcha.destroy(widgetIdRef.current);
             }
-
+            postErros({ok: '4'})
             // Create new widget
             widgetIdRef.current = window.smartCaptcha.render(captchaRef.current, {
                 sitekey: process.env.NEXT_PUBLIC_PUBLIC_CAPTCHA as string,
                 callback: (token: string) => callback(token),
                 hl: locale,
             });
+            postErros({ok: '5'})
         }
     }, [locale, callback]);
 
@@ -94,6 +99,7 @@ export default function YandexCaptcha({
                 src="https://smartcaptcha.yandexcloud.net/captcha.js"
                 onLoad={() => {
                     setScriptLoaded(true);
+                    postErros({ok: 'OK'})
                 }}
                 onError={(e)=>{
                     postErros(e)

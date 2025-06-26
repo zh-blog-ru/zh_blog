@@ -5,6 +5,7 @@ export class ErrorsController {
 
     @Post()
     getErrors(@Body() erros: any) {
+        console.log('ERRORS')
         console.log(erros)
     }
 }
