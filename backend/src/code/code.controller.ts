@@ -91,7 +91,6 @@ export class CodeController {
         @Body(new ValidationPipe({ whitelist: true, transform: true }))
         { email, token, username }: RegistrationCodeDto
     ) {
-        console.log('REEEG')
         await this.codeService.validateCaptcha(token);
         await this.validationService.UsernameIsExists(username, false);
         await this.validationService.EmailIsExists(email, false);

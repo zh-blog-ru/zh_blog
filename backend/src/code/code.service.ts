@@ -35,7 +35,7 @@ export class CodeService {
 
     async validateCaptcha(token: string) {
         const locale = I18nContext.current()?.lang
-        const isValid = await this.captchaService.checkCaptcha(token);
+        const isValid = await this.captchaService.checkCaptchaCloud(token);
         if (!isValid) {
             throw new HttpFormException({
                 errors: [this.i18n.t('validation.INCORRECT_CAPTCHA', { lang: locale })],
