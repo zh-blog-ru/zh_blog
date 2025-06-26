@@ -3,6 +3,7 @@ import Script from 'next/script'
 import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import s from './YandexCaptcha.module.css'
 import { useAppSelector } from '@/_redux/store'
+import { usePostErrosMutation } from '@/_redux/api/Api'
 
 declare global {
     interface Window {
@@ -35,6 +36,8 @@ export default function YandexCaptcha({
     ref: React.RefObject<CaptchaHandle | null>;
     position?: string;
 }) {
+    
+    const [postErros, {}] = usePostErrosMutation()
     const captchaRef = useRef<HTMLDivElement>(null);
     const widgetIdRef = useRef<string | null>(null);
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
@@ -91,6 +94,9 @@ export default function YandexCaptcha({
                 src="https://smartcaptcha.yandexcloud.net/captcha.js"
                 onLoad={() => {
                     setScriptLoaded(true);
+                }}
+                onError={(e)=>{
+                    postErros(e)
                 }}
                 strategy="lazyOnload"
             />

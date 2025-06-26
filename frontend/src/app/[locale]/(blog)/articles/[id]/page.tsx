@@ -16,7 +16,6 @@ import ListComments from './_components/ListComments';
 import Likes from './_components/Likes';
 import { getDictionary } from '@/i18n/getDictionary';
 import { getArticle } from '../../../../../../serverAction/getArticle';
-import Link from 'next/link';
 import AddComment from './_components/AddComment';
 import { getArticles } from '../../../../../../serverAction/getArticles';
 import { Metadata } from 'next';

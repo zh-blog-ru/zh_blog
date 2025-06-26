@@ -335,11 +335,20 @@ export const Api = createApi({
                 credentials: 'include'
             }),
             invalidatesTags: [{ type: 'User' }]
-        })
+        }),
+        PostErros: builder.mutation<void, any>({
+            query: (body) => ({
+                url: 'errors',
+                method: 'POST',
+                credentials: 'include'
+            }),
+        }),
+        
     })
 })
 
 export const {
+    usePostErrosMutation,
     useGetCommentsByArticleIdQuery,
     useSetArticlesMutation,
     useCreateUserMutation,

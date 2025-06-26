@@ -17,6 +17,7 @@ import { FileModule } from './file/file.module';
 import { CsrfModule } from './csrf/csrf.module';
 import { CsrfMiddleware } from './csrf/csrf.middleware';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { ErrorsModule } from './errors/errors.module';
 
 @Module({
   imports: [AuthModule, UsersModule, ArticleModule, DatabaseModule, RegistrationModule,
@@ -49,6 +50,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
         },
       ],
     }),
+    ErrorsModule,
   ],
   providers: [{
     provide: APP_GUARD,
