@@ -1,6 +1,7 @@
 /* Базовый стиль для мобильных (самый маленький размер) */
 .captchaContainer {
     position: relative;
+    z-index: 1;
     transform-origin: top left;
     height: calc(100px * 0.7);
     width: calc(300px * 0.7);
