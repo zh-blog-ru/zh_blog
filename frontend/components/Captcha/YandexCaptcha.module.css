@@ -1,13 +1,14 @@
 /* Базовый стиль для мобильных (самый маленький размер) */
 .captchaContainer {
-    position: relative;
-    z-index: 1;
     transform-origin: top left;
     height: calc(100px * 0.7);
     width: calc(300px * 0.7);
     transform: scale(0.7);
+    border-radius: 11px;
 }
-
+.captchaContainer div {
+    border-radius: 11px;
+}
 @media (min-width: 340px) {
     .captchaContainer {
         height: calc(100px * 0.75);
