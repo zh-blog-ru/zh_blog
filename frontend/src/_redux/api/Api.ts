@@ -340,7 +340,8 @@ export const Api = createApi({
             query: (body) => ({
                 url: 'errors',
                 method: 'POST',
-                credentials: 'include'
+                credentials: 'include',
+                body
             }),
         }),
         
