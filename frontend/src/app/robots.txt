@@ -10,4 +10,4 @@ Disallow: /*/profile/
 
 Disallow: /api/           
 
-Sitemap: https://ваш-сайт.ru/sitemap.xml
+Sitemap: https://zhblog.ru/sitemap.xml
