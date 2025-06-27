@@ -56,7 +56,7 @@ export function LocaleMiddleware(request: NextRequest): NextResponse<unknown> | 
     if (!pathnameHasLocale) {
       // Локаль отсутствует в пути, нужно перенаправить пользователя, добавив префикс локали из куки.
       const newPath = `/${localeCookie}${pathname}`;
-      return NextResponse.redirect(new URL(newPath, request.url));
+      return NextResponse.redirect(new URL(newPath, request.url),301);
     } else {
       // Локаль присутствует и в куки, и в пути.  Проверяем, совпадают ли они.
       const currentPathLocale = pathname.split('/')[1] as LocaleType;
@@ -69,7 +69,7 @@ export function LocaleMiddleware(request: NextRequest): NextResponse<unknown> | 
 
         // Формируем новый путь с локалью из куки.
         const newPath = `/${localeCookie}${newPathWithoutLocale}`;
-        return NextResponse.redirect(new URL(newPath, request.url));
+        return NextResponse.redirect(new URL(newPath, request.url), 301);
       } else {
         // Локаль в куки и в пути совпадают.  Ничего не нужно менять, возвращаем оригинальный запрос.
         return request
@@ -85,7 +85,7 @@ export function LocaleMiddleware(request: NextRequest): NextResponse<unknown> | 
       const newPath = `/${preferredLocale}${pathname}`;
 
       // Перенаправляем пользователя на новый путь.
-      const response = NextResponse.redirect(new URL(newPath, request.url));
+      const response = NextResponse.redirect(new URL(newPath, request.url), 301);
 
       // Устанавливаем куки с предпочитаемой локалью, чтобы в следующий раз использовать её.
       response.cookies.set(LOCALE_COOKIE_NAME, preferredLocale, { sameSite: 'lax', secure: true, httpOnly: true });
@@ -102,7 +102,7 @@ export function LocaleMiddleware(request: NextRequest): NextResponse<unknown> | 
       } else {
         // Локаль в пути не является валидной.  Перенаправляем на путь с локалью по умолчанию.
         const newPath = `/${defaultLocale}${pathname}`;
-        const response = NextResponse.redirect(new URL(newPath, request.url));
+        const response = NextResponse.redirect(new URL(newPath, request.url), 301);
         response.cookies.set(LOCALE_COOKIE_NAME, defaultLocale, { sameSite: 'lax', secure: true, httpOnly: true });
         return response;
       }
