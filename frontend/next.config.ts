@@ -1,6 +1,7 @@
 import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  i18n: null,
   allowedDevOrigins: ['*'],
   images: {
     remotePatterns: [

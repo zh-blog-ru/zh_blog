@@ -22,7 +22,14 @@ function getPreferredLocale(request: NextRequest): string {
 
   // Используем `match` для определения наиболее подходящей локали из списка поддерживаемых локалей.
   // Если ни одна из предпочитаемых локалей не поддерживается, возвращается `defaultLocale`.
-  return match(languages, locales, defaultLocale);
+
+  let locale = ''
+  try {
+    locale = match(languages, locales, defaultLocale)
+  } catch (error) {
+    locale = defaultLocale
+  }
+  return locale
 }
 
 /**
