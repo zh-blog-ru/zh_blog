@@ -76,9 +76,10 @@ export class UsersService {
             const window = new JSDOM('').window;
             const DOMPurify = createDOMPurify(window);
             const sanitizedAboutMe = DOMPurify.sanitize(about_me || '');
-            await this.databaseService.query(`
-                UPDATE users SET username=$1, about_me=$2 WHERE id = $3`,
-                [username, sanitizedAboutMe || null, id]);
+            const jwt_payload = (await this.databaseService.query(`
+                UPDATE users SET username=$1, about_me=$2 WHERE id = $3 RETURNING id, username, role`,
+                [username, sanitizedAboutMe || null, id])).rows[0];
+            return jwt_payload
         } catch (error) {
             this.logger.error(error);
             throw new InternalServerErrorException();

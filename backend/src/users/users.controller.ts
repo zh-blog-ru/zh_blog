@@ -132,15 +132,20 @@ export class UsersController {
             stopAtFirstError: true,
             transform: true,
         })) { username, about_me }: UpdateUserDto,
-        @Req() req: Request) {
+        @Req() req: Request, @Res({passthrough: true}) res: Response) {
         const user_jwt_payload = req.user as UserJWTInterfaces
         if (username !== user_jwt_payload.username) {
             await this.validationService.UsernameIsExists(username, false);
         }
-        await this.usersService.changeProfile({
+        const jwt_payload = await this.usersService.changeProfile({
             username,
             about_me,
             id: user_jwt_payload.id
+        })
+        
+        res.cookie('jwt', jwt_payload, {
+            sameSite: 'lax',
+            httpOnly: true, secure: true, maxAge: 3600 * 1000 * 24
         })
     }
 
