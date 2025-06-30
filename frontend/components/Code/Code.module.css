@@ -20,9 +20,11 @@
 .label {
     font-size: 1rem;
 }
+
 .label span {
     font-weight: 600;
 }
+
 .errors {
     list-style: none;
     color: var(--ColorError);
@@ -36,4 +38,29 @@
     margin-top: 0.8rem;
     display: grid;
     gap: 0.2rem;
+}
+
+.resendButton {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--ColorBlack);
+    border: none;
+    color: var(--ColorWhite);
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-align: left;
+    transition: color 0.3s;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.resendButton:hover:not(:disabled) {
+    color: var(--ColorGray_3);
+    text-decoration: underline;
+}
+
+.resendButton:disabled {
+    color: var(--ColorGray_3);
+    cursor: not-allowed;
+    text-decoration: none;
 }

@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, InternalServerErrorException, IntrinsicException, Logger } from '@nestjs/common';
 import { UserJWTInterfaces } from 'interfaces/UserJWTInterfaces';
 import { DatabaseService } from 'src/database/database.service';
 import { I18nTranslations } from 'src/i18n/generated/i18n.generated';
@@ -54,12 +54,15 @@ export class UsersService {
             return user[0];
         } catch (error) {
             this.logger.error(error)
+            if (error instanceof IntrinsicException) {
+                throw error
+            }
             throw new InternalServerErrorException()
         }
     }
     async deleteAccount(id: number) {
         try {
-            const {profile_picture_url} = (await this.databaseService.query(`
+            const { profile_picture_url } = (await this.databaseService.query(`
                 DELETE from users where id = $1 RETURNING profile_picture_url`,
                 [id])).rows[0]
             return profile_picture_url
@@ -76,7 +79,7 @@ export class UsersService {
             await this.databaseService.query(`
                 UPDATE users SET username=$1, about_me=$2 WHERE id = $3`,
                 [username, sanitizedAboutMe || null, id]);
-        } catch (error) { 
+        } catch (error) {
             this.logger.error(error);
             throw new InternalServerErrorException();
         }

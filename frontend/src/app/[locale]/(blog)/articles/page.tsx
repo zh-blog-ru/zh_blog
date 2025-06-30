@@ -39,7 +39,7 @@ export default async function BlogArticlesPage({
       {articles.length !== 0 ?
         <div className={s.articles}>
           {articles.map((item, index) => (
-            <div key={index} className={s.article}>
+            <div key={item.id} className={s.article}>
               <LocalizedLink href={'/articles/' + item.id}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
                   <Image src={item.img} alt='photo' fill
@@ -59,7 +59,7 @@ export default async function BlogArticlesPage({
                   <div className={s.themes}>
                     {item.theme.map((theme, index) => (
                       // <Link href={'/theme/' + theme} key={index}>
-                      <span>
+                      <span key={index}>
                         {theme}
                       </span>
                       // </Link>

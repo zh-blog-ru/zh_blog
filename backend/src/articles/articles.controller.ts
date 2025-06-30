@@ -3,6 +3,7 @@ import { ArticleService } from './articles.service';
 import { Request } from 'express';
 import { isPublic } from 'Generated/PublicDecorator';
 import { ArticleInterfaces } from 'interfaces/ArticleInterfaces';
+import { isAdmin } from 'Generated/AdminDecorator';
 
 @Controller({
   path: 'articles',
@@ -21,6 +22,14 @@ export class ArticleController {
     const data = await this.articleService.getArticles()
     return data
   }
+
+  @isAdmin()
+  @Get('temp')
+  getTempArticles() {
+    console.log('TEMP_ARTICLES')
+    return 'TEMP_ARTICLES'
+  }
+
 
   @isPublic()
   @Get(':id')

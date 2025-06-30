@@ -17,11 +17,11 @@ export class CodeService {
     private readonly transporter = nodemailer.createTransport({
         service: "yandex",
         host: 'smtp.yandex.ru',
-        port: 465, 
-        secure: true, 
+        port: 465,
+        secure: true,
         auth: {
             user: this.configService.get('SMTP_USER'),
-            pass: this.configService.get('SMTP_PASSWORD'), 
+            pass: this.configService.get('SMTP_PASSWORD'),
         },
     });
     constructor(
@@ -54,13 +54,19 @@ export class CodeService {
     }
 
     async handleCodeOperation(email: string, type: EmailType) {
-        await this.cacheManager.del(JSON.stringify({ email, type }));
+        try {
+            await this.cacheManager.del(JSON.stringify({ email, type }));
 
-        const code = this.generateCode()
-        await this.sendEmail(email, code.toString(), type);
-        await this.cacheManager.set(JSON.stringify({ email, type }), code, 300 * 1000);
+            const code = this.generateCode()
+            await this.sendEmail(email, code.toString(), type);
+            await this.cacheManager.set(JSON.stringify({ email, type }), code, 300 * 1000);
 
-        return code;
+            return code;
+        } catch(error) {
+            this.logger.error(error)
+            throw new InternalServerErrorException('Не удается отправить код')
+        }
+
     }
 
     async sendEmail(email: string, code: string, type: EmailType) {
@@ -76,7 +82,7 @@ export class CodeService {
                 subject: "Код подтверждения для входа",
                 html
             });
-            console.log("Message sent:", info.messageId); 
+            console.log("Message sent:", info.messageId);
             console.log("Message sent:", info);
         } catch (error) {
             this.logger.error(error)

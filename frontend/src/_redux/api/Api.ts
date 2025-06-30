@@ -344,11 +344,18 @@ export const Api = createApi({
                 body
             }),
         }),
-        
+        ResetCode: builder.mutation<void, void>({
+            query: () => ({
+                url: 'code/reset_code',
+                method: 'POST',
+                credentials: 'include',
+            }),
+        }),
     })
 })
 
 export const {
+    useResetCodeMutation,
     usePostErrosMutation,
     useGetCommentsByArticleIdQuery,
     useSetArticlesMutation,

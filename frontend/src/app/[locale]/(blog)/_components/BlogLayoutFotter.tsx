@@ -29,7 +29,7 @@ export default async function BlogLayoutFotter({ params }: { params: Promise<{ l
         </div>
 
         <div className={styles.cookieNotice}>
-          <p>{dict.p} <a href="/privacy">{dict.privacy_policy}</a>.</p>
+          <p>{dict.p} <LocalizedLink href="/privacy">{dict.privacy_policy}</LocalizedLink>.</p>
         </div>
       </div>
     </footer>
