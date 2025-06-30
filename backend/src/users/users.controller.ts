@@ -1,7 +1,7 @@
 import { FileService } from './../file/file.service';
 import { ArticleService } from './../articles/articles.service';
 import { UsersService } from './users.service';
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req, Res, UploadedFile, UseFilters, UseGuards, UseInterceptors, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req, Res, UploadedFile, UseFilters, UseGuards, UseInterceptors, ValidationPipe } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { isPublic } from 'Generated/PublicDecorator';
 import { UserJWTInterfaces } from 'interfaces/UserJWTInterfaces';
@@ -18,6 +18,7 @@ import { ChangePasswordDto } from 'DTO/ChangePassowrdDto.dto';
 import { join } from 'path';
 import { FileParsePipe } from 'Generated/FileParsePipe';
 import { ValidationService } from 'src/validation/validation.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Controller('users')
 export class UsersController {
@@ -27,6 +28,7 @@ export class UsersController {
         private readonly articleService: ArticleService,
         private readonly fileService: FileService,
         private readonly validationService: ValidationService,
+        private readonly jwtService: JwtService
     ) { }
 
 
@@ -57,12 +59,14 @@ export class UsersController {
         }
     }
 
-    @Post('me/delete')
+    @Delete('me/delete')
     async deleteAccount(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
         const user_jwt_payload = req.user as UserJWTInterfaces
-        const profile_picture_url = await this.usersService.deleteAccount(user_jwt_payload.id)
-        const filePath = join(process.cwd(), 'uploads/stable/images', profile_picture_url)
-        await this.fileService.deleteFile(filePath)
+        const profile_picture_url: null | string = await this.usersService.deleteAccount(user_jwt_payload.id)
+        if (profile_picture_url) {
+            const filePath = join(process.cwd(), 'uploads/stable/images', profile_picture_url)
+            await this.fileService.deleteFile(filePath)
+        }
         res.clearCookie('jwt', {
             sameSite: 'lax',
             httpOnly: true, secure: true, maxAge: 3600 * 1000 * 24
@@ -132,7 +136,7 @@ export class UsersController {
             stopAtFirstError: true,
             transform: true,
         })) { username, about_me }: UpdateUserDto,
-        @Req() req: Request, @Res({passthrough: true}) res: Response) {
+        @Req() req: Request, @Res({ passthrough: true }) res: Response) {
         const user_jwt_payload = req.user as UserJWTInterfaces
         if (username !== user_jwt_payload.username) {
             await this.validationService.UsernameIsExists(username, false);
@@ -142,8 +146,8 @@ export class UsersController {
             about_me,
             id: user_jwt_payload.id
         })
-        
-        res.cookie('jwt', jwt_payload, {
+        const jwt = this.jwtService.sign(jwt_payload)
+        res.cookie('jwt', jwt, {
             sameSite: 'lax',
             httpOnly: true, secure: true, maxAge: 3600 * 1000 * 24
         })

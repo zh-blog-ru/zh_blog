@@ -38,6 +38,9 @@ export default function Modal({
 
 
     const handleCloseModal = useCallback(() => {
+        setPassword('')
+        setConfirmPassword('')
+        setEmail('')
         setIsModalOpen(false)
         setStep(1)
         setCode('')

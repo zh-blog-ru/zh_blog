@@ -69,7 +69,7 @@ export const Api = createApi({
             query: () => {
                 return {
                     url: 'users/me/delete',
-                    method: "POST",
+                    method: "DELETE",
                     credentials: 'include'
                 }
             }
