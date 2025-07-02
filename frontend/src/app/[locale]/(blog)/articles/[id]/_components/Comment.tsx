@@ -24,7 +24,6 @@ export default React.memo(function Comment({
     const [count, setCount] = useState<number>(comment.data.length)
     const [updateComment, { }] = useUpdateCommetsMutation()
     const { errors, handleError, resetErrors } = useErrorHandler()
-
     const resetChange = () => {
         setIsChange(false)
         resetErrors()
@@ -46,7 +45,7 @@ export default React.memo(function Comment({
     return (
         <div className={s.comment} ref={ref}>
             <div>
-                <LocalizedLink href={`/profile/${comment.user_id}`}>
+                <LocalizedLink href={`/profile/${comment.user_id}`} style={{color: 'unset'}}>
                     <ProfileImage size={50} profile_picture_url={comment.profile_picture_url} />
                 </LocalizedLink>
             </div>

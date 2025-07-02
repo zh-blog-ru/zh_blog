@@ -1,0 +1,49 @@
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.saveButton {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--ColorBlack);
+    color: var(--ColorWhite);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+    background-color: var(--ColorGray_5);
+}
+
+.cancelButton {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--ColorGray_2);
+    color: var(--ColorWhite);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+    background-color: var(--ColorGray_3);
+}
+
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
+    }
+
+    .saveButton,
+    .cancelButton {
+        width: 100%;
+        text-align: center;
+    }
+}

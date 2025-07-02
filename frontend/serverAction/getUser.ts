@@ -6,7 +6,7 @@ import { PrivateUserInterfaces } from './getCurrentUser';
 
 
 export type PublicUserInterfaces = Pick<UserInterfaces,
-    'id' | 'username' | 'profile_picture_url' | 'about_me'> & { isOwner: false }
+    'id' | 'username' | 'profile_picture_url' | 'about_me' | 'role'> & { isOwner: false }
 
 type ReturnGetUserType = Promise<PrivateUserInterfaces | PublicUserInterfaces | false> | never
 export async function getUser(id: number): ReturnGetUserType {

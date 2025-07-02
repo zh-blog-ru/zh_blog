@@ -1,0 +1,87 @@
+.imageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.editButton {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.editButton:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.urlInputContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.urlInput {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--ColorGray_3);
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.saveButton,
+.cancelButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.saveButton {
+    background-color: var(--ColorBlack);
+    color: white;
+}
+
+.saveButton:disabled {
+    background-color: var(--ColorGray_3);
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    background-color: var(--ColorGray_2);
+    color: white;
+}
+
+.saveButton:hover:not(:disabled) {
+    background-color: var(--ColorGray_5);
+}
+
+.cancelButton:hover {
+    background-color: var(--ColorGray_3);
+}

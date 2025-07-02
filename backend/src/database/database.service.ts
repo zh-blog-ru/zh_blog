@@ -33,7 +33,7 @@ export class DatabaseService {
         const client = await this.client.connect()
         return client
     }
-    async query(query: string, params?: (number | string | boolean | undefined | null)[]) {
+    async query(query: string, params?: (number | string | boolean | undefined | null | string[])[]) {
         const data = await this.client.query(query,params)
         return data
     }

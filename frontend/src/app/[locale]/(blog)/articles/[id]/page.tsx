@@ -26,15 +26,13 @@ type Props = {
 }
 export const dynamicParams = true
 export async function generateStaticParams() {
-    const articles: Omit<ArticleInterface, 'content'>[] = await getArticles('ru')
+    const articles = await getArticles()
     const paths = []
-    for (const locale of locales) {
-        for (const article of articles) {
-            paths.push({
-                locale: locale,
-                id: article.id.toString(), // Убедитесь, что id - строка
-            });
-        }
+    for (const article of articles) {
+        paths.push({
+            locale: article.locale,
+            id: article.id.toString(), // Убедитесь, что id - строка
+        });
     }
     return paths
 }

@@ -1,13 +1,15 @@
 import { ArticleInterface } from "../Interfaces/ArticleInterface"
 import { notFound } from "next/navigation"
 import { LocaleType } from "@/i18n/locales"
+import { cookies } from "next/headers"
 
 
-export async function getArticle(article_id: number, lang: LocaleType): Promise<ArticleInterface | never> {
+type InfoArticle = ArticleInterface & {is_active: boolean}
+export async function getInfoArticle(article_id: number, lang: LocaleType): Promise<InfoArticle | never> {
     console.log('article/[id]')
-    const response = (await fetch(`https://zhblog.ru/api/v1/articles/${article_id}?locale=${lang}`, {
+    const response = (await fetch(`https://zhblog.ru/api/v1/articles/info/${article_id}?locale=${lang}`, {
         headers: {
-            'Cookie': `locale=${lang}`
+            'Cookie': (await cookies()).toString()
         },
         cache: 'force-cache'
     }))

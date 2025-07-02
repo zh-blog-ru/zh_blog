@@ -23,7 +23,6 @@ export default function MenuHeaderAuth({
   const [menuIsActive, setMenuIsActive] = useState<boolean>(false)
   const [logout, { isLoading }] = useLogoutUserMutation()
   const { errors, handleError, resetErrors } = useErrorHandler()
-
   const handleLogout = () => {
     resetErrors()
     logout().unwrap()
@@ -36,6 +35,7 @@ export default function MenuHeaderAuth({
   }
   const url = usePathname()
   useEffect(() => {
+    console.log('current_user?.role:', current_user?.role)
     setMenuIsActive(false)
   }, [url])
   return (
@@ -47,7 +47,7 @@ export default function MenuHeaderAuth({
             </div>
             <div className={s.sidebar}>
               <div className={`${s.iconOFF}`}>
-                <IoMdClose onClick={() => setMenuIsActive(false)}  />
+                <IoMdClose onClick={() => setMenuIsActive(false)} />
               </div>
               <div className={s.menu}>
                 <div className={s.links}>
@@ -78,6 +78,12 @@ export default function MenuHeaderAuth({
                     <nav className={s.nav}>
                       <LocalizedLink href={'/articles'}>{dict.articles}</LocalizedLink>
                       <LocalizedLink href={'/about_me'}>{dict['about me']}</LocalizedLink>
+                      {current_user?.role === 'admin' ?
+                        <>
+                          <LocalizedLink href={'/create_article'}>Создать статью</LocalizedLink>
+                          <LocalizedLink href={'/change_articles'}>Изменить статьи</LocalizedLink>
+                        </>
+                        : null}
                     </nav>
                   </div>
                 </div>

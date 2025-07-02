@@ -11,7 +11,7 @@ import { getDictionary } from "@/i18n/getDictionary";
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  userScalable: false,
+  userScalable: true,
 }
 
 const inter = Inter({

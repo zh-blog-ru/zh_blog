@@ -32,7 +32,7 @@ export default function ProfileImage({
                         unoptimized
                         onError={()=>setIsError(true)}
                     />
-                    : <FaUserCircle size={size} />
+                    : <FaUserCircle size={size}/>
             }
         </>
     )

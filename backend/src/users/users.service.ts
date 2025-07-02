@@ -43,7 +43,7 @@ export class UsersService {
         const locale = I18nContext.current()?.lang
         try {
             const user = (await this.databaseService.query(`
-            select id, username, email, profile_picture_url, about_me from users where id=$1
+            select id, username, email, profile_picture_url, about_me, role from users where id=$1
             `, [id])).rows as [Omit<PrivateUserInterfaces, 'isOwner'>] | []
             if (user.length === 0) {
                 throw new HttpException(this.i18n.t('validation.NOT_FOUND', { lang: locale }), HttpStatus.NOT_FOUND);

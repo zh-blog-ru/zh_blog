@@ -4,7 +4,7 @@ import { UserInterfaces } from "../Interfaces/UserInterfaces"
 import { cache } from 'react'
 
 export type PrivateUserInterfaces = Pick<UserInterfaces,
-    'id' | 'username' | 'profile_picture_url' | 'about_me' | 'email'> & { isOwner: true }
+    'id' | 'username' | 'profile_picture_url' | 'about_me' | 'email' | 'role'> & { isOwner: true }
 
 export const getCurrentUser = async (id: "me"): Promise<PrivateUserInterfaces | false> => {
         const cookie = await cookies()

@@ -41,7 +41,7 @@ export class CommentsService {
                 values ($1,$2,$3)
                 RETURNING id, user_id, create_at, data, update_at, parent_comment_id
             )
-            select ic.id, ic.create_at, ic.data, ic.update_at, ic.parent_comment_id, u.username, u.profile_picture_url,
+            select ic.id, ic.create_at, ic.user_id, ic.data, ic.update_at, ic.parent_comment_id, u.username, u.profile_picture_url,
             (u.id = $1) AS "isOwner"
                 from InsertedComment ic JOIN users u ON ic.user_id = u.id
             `, [user_id, article_id, sanitizedComment])).rows[0] as CommentsInterfaces

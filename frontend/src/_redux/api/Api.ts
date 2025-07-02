@@ -6,6 +6,8 @@ import { CommentsInterfaces } from "../../../Interfaces/CommentsInterface";
 import { LikesInterfaces } from "../../../Interfaces/LikesInterfaces";
 import { PrivateUserInterfaces } from "../../../serverAction/getCurrentUser";
 import Cookies from 'js-cookie'
+import { CreateArticlesInterface, UpdateArticlesInterface } from "../../../Interfaces/ArticleInterface";
+import { LocaleType } from "@/i18n/locales";
 
 const customBaseQuery: BaseQueryFn = async (args, api, extraOptions) => {
     const result = await fetchBaseQuery({
@@ -31,11 +33,18 @@ export const Api = createApi({
     baseQuery: customBaseQuery,
     tagTypes: ['Comments', 'Likes', 'User'],
     endpoints: builder => ({
-        setArticles: builder.mutation<Article, Omit<Article, 'id'>>({
-            query: (arg) => ({
-                url: 'articles',
+        changeArticle: builder.mutation<Article, UpdateArticlesInterface & {locale: LocaleType, id: number}>({
+            query: ({id, locale, ...body}) => ({
+                url: `articles/${id}?locale=${locale}`,
+                method: 'PATCH',
+                body
+            }),
+        }),
+        addArticles: builder.mutation<Article, CreateArticlesInterface>({
+            query: (body) => ({
+                url: `articles`,
                 method: 'POST',
-                body: arg
+                body
             }),
         }),
         createUser: builder.mutation<{ id: number }, CreateUserDto>({
@@ -355,10 +364,11 @@ export const Api = createApi({
 })
 
 export const {
+    useAddArticlesMutation,
     useResetCodeMutation,
     usePostErrosMutation,
     useGetCommentsByArticleIdQuery,
-    useSetArticlesMutation,
+    useChangeArticleMutation,
     useCreateUserMutation,
     useLoginUserMutation,
     useSetCommetsMutation,
