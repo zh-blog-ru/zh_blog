@@ -21,9 +21,9 @@ export class ArticleController {
 
 
   @isAdmin()
-  @Get('all')
+  @Get('info')
   async getAllArticles() {
-    const data = await this.articleService.getAllArticles()
+    const data = await this.articleService.getArticlesInfo()
     return data
   }
 
@@ -47,6 +47,7 @@ export class ArticleController {
     const data = await this.articleService.getArticleInfo(id, locale)
     return data
   }
+
   @UseFilters(ExcepMultiLangFilter)
   @isAdmin()
   @Patch(':id')

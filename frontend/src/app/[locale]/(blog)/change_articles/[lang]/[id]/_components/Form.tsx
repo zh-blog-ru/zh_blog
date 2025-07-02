@@ -6,6 +6,7 @@ import s from './Form.module.css'
 import { useChangeArticleMutation } from '@/_redux/api/Api'
 import { LocaleType } from '@/i18n/locales'
 import { redirectTo } from '../../../../../../../../serverAction/RedirectTo'
+import useLocalizedRouter from '@/i18n/routes/LocalizedUseRouter'
 interface FormProps {
     className?: string
     children: React.ReactNode,
@@ -24,6 +25,7 @@ interface FormProps {
 
 export default function Form({ className, children, initialData, lang, id }: FormProps) {
     const [ChangeArticle, { }] = useChangeArticleMutation()
+    const router = useLocalizedRouter()
     const onSubmit = async (data: FormData) => {
         const formData = {
             theme: data.getAll('themes') as string[],
@@ -64,7 +66,8 @@ export default function Form({ className, children, initialData, lang, id }: For
                 ...changes, id, locale: lang,
             }).unwrap()
                 .then(() => {
-                    redirectTo(`/change_articles/${lang}/${id}`, false)
+                    // redirectTo(`/change_articles/${lang}/${id}`, false)
+                    router.refresh()
                 })
             console.log('Измененные данные:', changes)
             // Здесь можно отправить changes на сервер

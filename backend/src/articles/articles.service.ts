@@ -106,7 +106,7 @@ export class ArticleService {
         }
     }
 
-    async getAllArticles() {
+    async getArticlesInfo() {
         try {
             const articles: (ArticleWithoutContent & {is_active: boolean})[] | [] = (await this.databaseService.query(`
             select a.id, a.img, a.theme, a.time_to_read, a.create_at, a.update_at, at.locale, at.title, at.resume, at.is_active from articles a

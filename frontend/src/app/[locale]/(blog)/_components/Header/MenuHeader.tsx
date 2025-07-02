@@ -35,7 +35,6 @@ export default function MenuHeaderAuth({
   }
   const url = usePathname()
   useEffect(() => {
-    console.log('current_user?.role:', current_user?.role)
     setMenuIsActive(false)
   }, [url])
   return (

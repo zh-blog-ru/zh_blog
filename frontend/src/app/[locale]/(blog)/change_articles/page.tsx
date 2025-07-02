@@ -1,6 +1,6 @@
 import { LocaleType } from '@/i18n/locales';
 import React from 'react'
-import { getAllArticles } from '../../../../../serverAction/getAllArticles';
+import { getInfoArticles } from '../../../../../serverAction/getInfoArticles';
 import Image from 'next/image';
 import LocalizedLink from '@/i18n/routes/LocalizedLink';
 import Time from '../articles/_components/Time';
@@ -18,7 +18,7 @@ export default async function Page({
 }: Props) {
   await IsAdmin()
   const { locale } = await params;
-  const articles = await getAllArticles()
+  const articles = await getInfoArticles()
   if (!articles) {
     redirect('/' + locale + ('/articles'))
   }
