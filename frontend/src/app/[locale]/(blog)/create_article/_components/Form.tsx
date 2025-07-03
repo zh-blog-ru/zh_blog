@@ -5,6 +5,7 @@ import React from 'react'
 import s from './Form.module.css'
 import { useAddArticlesMutation, useChangeArticleMutation } from '@/_redux/api/Api'
 import { redirectTo } from '../../../../../../serverAction/RedirectTo'
+import useLocalizedRouter from '@/i18n/routes/LocalizedUseRouter'
 interface FormProps {
     className?: string
     children: React.ReactNode,
@@ -12,6 +13,7 @@ interface FormProps {
 
 export default function Form({ className, children }: FormProps) {
     const [ChangeArticle, { }] = useAddArticlesMutation()
+    const router = useLocalizedRouter()
     const onSubmit = async (data: FormData) => {
         const formData = {
             theme: data.getAll('themes') as string[],
@@ -25,7 +27,7 @@ export default function Form({ className, children }: FormProps) {
             img: formData.img,
         }).unwrap()
         .then(()=>{
-            redirectTo(`/change_articles`, false)
+            router.push('/change_articles')
         })
         
     }

@@ -70,7 +70,7 @@ export default async function Page({
               </div>
               <div className={s.change}>
                 <LocalizedLink href={`/change_articles/${item.locale}/${item.id}`}>
-                  ИЗМЕНИТЬ СТАТЬЮ
+                  ИЗМЕНИТЬ СТАТЬЮ {item.locale}
                 </LocalizedLink>
               </div>
             </div>

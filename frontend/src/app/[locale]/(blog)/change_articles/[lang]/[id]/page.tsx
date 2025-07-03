@@ -22,7 +22,7 @@ export default async function Page({
     
     return (
         <div className={s.main}>
-            <h2>Редактирование статьи</h2>
+            <h2>Редактирование статьи {lang.toUpperCase()}</h2>
 
             <Form 
                 lang={lang}

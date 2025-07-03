@@ -36,9 +36,59 @@
     background-color: var(--ColorGray_3);
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.successMessage {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--ColorSuccess);
+    color: var(--ColorWhite);
+    border-radius: 8px;
+    font-weight: 500;
+    margin-right: auto;
+    opacity: 0; /* Начальное состояние */
+    transform: translateY(-10px);
+}
+
+.successMessage.show {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.successMessage.hide {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
 @media (max-width: 768px) {
     .actions {
         flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .successMessage {
+        order: -1;
+        /* Перемещаем сообщение наверх в мобильной версии */
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
     }
 
     .saveButton,

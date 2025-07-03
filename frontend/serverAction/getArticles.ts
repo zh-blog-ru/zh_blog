@@ -8,7 +8,10 @@ export async function getArticles(lang?: LocaleType): Promise<ArticleWithoutCont
         headers: {
             'Cookie': `locale=${lang}`
         },
-        cache: 'force-cache'
+        cache: 'force-cache',
+        next: {
+            tags: ['articles']
+        }
     }))
     if (!response.ok) {
         const error = await response.json()

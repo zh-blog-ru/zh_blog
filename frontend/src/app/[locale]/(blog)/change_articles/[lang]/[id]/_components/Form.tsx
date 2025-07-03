@@ -1,12 +1,12 @@
 // Form.tsx (клиентский компонент)
 'use client'
 import LocalizedLink from '@/i18n/routes/LocalizedLink'
-import React from 'react'
+import React, { useState } from 'react'
 import s from './Form.module.css'
 import { useChangeArticleMutation } from '@/_redux/api/Api'
 import { LocaleType } from '@/i18n/locales'
-import { redirectTo } from '../../../../../../../../serverAction/RedirectTo'
 import useLocalizedRouter from '@/i18n/routes/LocalizedUseRouter'
+import { revalidateArticles } from '../../../../../../../../serverAction/revalidateArticles'
 interface FormProps {
     className?: string
     children: React.ReactNode,
@@ -24,7 +24,9 @@ interface FormProps {
 }
 
 export default function Form({ className, children, initialData, lang, id }: FormProps) {
-    const [ChangeArticle, { }] = useChangeArticleMutation()
+    const [ChangeArticle, { isLoading }] = useChangeArticleMutation()
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
     const router = useLocalizedRouter()
     const onSubmit = async (data: FormData) => {
         const formData = {
@@ -66,9 +68,19 @@ export default function Form({ className, children, initialData, lang, id }: For
                 ...changes, id, locale: lang,
             }).unwrap()
                 .then(() => {
-                    // redirectTo(`/change_articles/${lang}/${id}`, false)
-                    router.refresh()
-                })
+                    setIsSuccess(true);
+                    setIsAnimating(true);
+
+                    // Начинаем исчезновение через 2 секунды
+                    setTimeout(() => {
+                        setIsAnimating(false);
+                        // Убираем сообщение после завершения анимации
+                        setTimeout(() => setIsSuccess(false), 300);
+                    }, 2000);
+
+                    router.refresh();
+                    revalidateArticles();
+                });
             console.log('Измененные данные:', changes)
             // Здесь можно отправить changes на сервер
         } else {
@@ -80,7 +92,21 @@ export default function Form({ className, children, initialData, lang, id }: For
         <form className={className} action={onSubmit}>
             {children}
             <div className={s.actions}>
-                <button type="submit" className={s.saveButton}>Сохранить изменения</button>
+                {isSuccess && (
+                    <div className={`
+                        ${s.successMessage}
+                        ${isAnimating ? s.show : s.hide}
+                    `}>
+                        Изменения успешно сохранены!
+                    </div>
+                )}
+                <button
+                    type="submit"
+                    className={s.saveButton}
+                    disabled={isLoading}
+                >
+                    {isLoading ? 'Сохранение...' : 'Сохранить изменения'}
+                </button>
                 <LocalizedLink href={`/change_articles`} className={s.cancelButton}>
                     Отмена
                 </LocalizedLink>

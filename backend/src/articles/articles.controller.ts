@@ -16,7 +16,7 @@ import { ExcepMultiLangFilter } from 'Generated/ExcepMultiLangFilter';
 export class ArticleController {
 
   constructor(
-    private readonly articleService: ArticleService,
+    private readonly articleService: ArticleService, 
   ) { }
 
 
@@ -31,6 +31,7 @@ export class ArticleController {
   @Get()
   async getArticles(@Query('locale') locale: string): Promise<Omit<ArticleInterfaces, 'content'>[] | undefined> {
     const data = await this.articleService.getArticles(locale)
+    console.log(data)
     return data
   }
 

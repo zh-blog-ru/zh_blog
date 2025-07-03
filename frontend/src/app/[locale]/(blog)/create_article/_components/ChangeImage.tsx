@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import s from './ChangeImage.module.css'
 
 export default function ChangeImage() {
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState('https://images.unsplash.com/photo-1555421689-491a97ff2040')
     const [editMode, setEditMode] = useState(false)
     const [inputUrl, setInputUrl] = useState('')
 
