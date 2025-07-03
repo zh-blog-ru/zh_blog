@@ -7,7 +7,7 @@ export async function getInfoArticles(): Promise<(ArticlesWithoutContent & {is_a
             headers: {
                 'Cookie': (await cookies()).toString()
             }, 
-            cache: 'force-cache'
+            cache: 'no-cache'
         }))
         if (!response.ok) {
             const error = await response.json()

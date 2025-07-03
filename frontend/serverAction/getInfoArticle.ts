@@ -11,7 +11,7 @@ export async function getInfoArticle(article_id: number, lang: LocaleType): Prom
         headers: {
             'Cookie': (await cookies()).toString()
         },
-        cache: 'force-cache'
+        cache: 'no-cache'
     }))
     if (!response.ok) {
         const error = await response.json()
