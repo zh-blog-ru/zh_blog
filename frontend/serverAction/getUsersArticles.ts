@@ -2,9 +2,9 @@ import { cookies } from "next/headers"
 import { ArticleInterface } from "../Interfaces/ArticleInterface"
 
 
-export async function getUsersArticles(): Promise<Pick<ArticleInterface, 'img' | 'title' | 'id'>[] | []> {
+export async function getUsersArticles(id: number): Promise<Pick<ArticleInterface, 'img' | 'title' | 'id'>[] | []> {
         const cookie = await cookies()
-        const response = (await fetch("https://zhblog.ru/api/v1/users/me/liked_articles", {
+        const response = (await fetch(`https://zhblog.ru/api/v1/users/${id}/liked_articles`, {
             headers: {
                 'Cookie': cookie.toString()
             },

@@ -58,7 +58,7 @@ export default async function User({
                 </div>
             </div>
             {user.isOwner ?
-                <MiniArticles dict={dict.likes} />
+                <MiniArticles dict={dict.likes} user_id={id}/>
                 : null
             }
             {/* <div className={s.comments}>

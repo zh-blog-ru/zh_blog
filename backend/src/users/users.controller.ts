@@ -73,10 +73,10 @@ export class UsersController {
         })
     }
 
-    @Get("me/liked_articles")
-    async getArticlesLikedUser(@Req() req: Request) {
-        const user_jwt_payload = req.user as UserJWTInterfaces
-        const articles = await this.articleService.getArticlesLikedUser(user_jwt_payload.id)
+    @isPublic()
+    @Get(":id/liked_articles")
+    async getArticlesLikedUser(@Param('id' ,ParseIntPipe) id: number) {
+        const articles = await this.articleService.getArticlesLikedUser(id)
         return articles
     }
 

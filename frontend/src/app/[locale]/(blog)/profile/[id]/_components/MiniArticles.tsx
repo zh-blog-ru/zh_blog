@@ -6,11 +6,13 @@ import { DictionaryType } from '@/i18n/getDictionary'
 import { getUsersArticles } from '../../../../../../../serverAction/getUsersArticles'
 import LocalizedLink from '@/i18n/routes/LocalizedLink'
 export async function MiniArticles({
-    dict
+    dict,
+    user_id
 }: {
-    dict: DictionaryType['blog']['profile']['likes']
+    dict: DictionaryType['blog']['profile']['likes'],
+    user_id: number
 }) {
-    let articles = await getUsersArticles()
+    let articles = await getUsersArticles(user_id)
     if (articles.length === 0) {
         return (
             <div>
