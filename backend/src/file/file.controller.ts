@@ -25,20 +25,17 @@ export class FileController {
             return res.status(404).send('File not found');
         }
 
-        try {
-            res.sendFile(filePath, {
-                headers: {
-                    'Content-Type': 'image/jpeg',
-                },
-            }, (err) => {
-                if (err) {
-                    // Подавляем все ошибки и возвращаем 404
-                    throw new NotFoundException('File not found');
-                }
-            });
-        } catch {
-            throw new NotFoundException('File not found');
-        }
+        res.sendFile(filePath, {
+            headers: {
+                'Content-Type': 'image/jpeg',
+            },
+        }, (err) => {
+            if (err) {
+                // Подавляем все ошибки и возвращаем 404
+                // throw new NotFoundException('File not found');
+                return 'not_found'
+            }
+        });
 
     }
 }
