@@ -26,14 +26,15 @@ export class FileOptimizationPipe implements PipeTransform {
             }
 
             const quality = this.options.quality;
-            const optimizedBuffer = await sharp(file.buffer)
+            const optimizedBuffer = await sharp(file.buffer, {
+                limitInputPixels: 20 * 1024 * 1024
+            })
                 .resize({
                     width: 720,
                     height: 720
                 })
                 .rotate() // Auto-orient based on EXIF
-                .withMetadata({
-                }) // Remove all metadata
+                .withMetadata() // Remove all metadata
                 .jpeg({
                     quality,
                     mozjpeg: true,

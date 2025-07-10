@@ -1,5 +1,4 @@
 import { Controller, Get, Param, Res, UseFilters, ValidationPipe } from '@nestjs/common';
-import { FileService } from './file.service';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { Response } from 'express';
