@@ -32,8 +32,8 @@ export class FileController {
         }, (err) => {
             if (err) {
                 // Подавляем все ошибки и возвращаем 404
-                // throw new NotFoundException('File not found');
-                return 'not_found'
+                throw new NotFoundException('File not found');
+                // return 'not_found'
             }
         });
 
