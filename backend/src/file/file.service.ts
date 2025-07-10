@@ -1,10 +1,15 @@
+import { ConfigService } from '@nestjs/config';
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { existsSync } from 'fs';
 import { copyFile, mkdir, readFile, unlink, writeFile } from 'fs/promises';
 import * as path from 'path';
+import { join } from 'path';
+
 @Injectable()
 export class FileService {
+
+
 
     private readonly logger = new Logger(FileService.name);
 
@@ -19,7 +24,7 @@ export class FileService {
             return filename
         } catch (error) {
             this.logger.error(error)
-            throw new InternalServerErrorException() 
+            throw new InternalServerErrorException()
         }
     }
 
@@ -35,8 +40,9 @@ export class FileService {
         }
     }
 
-    async deleteFile(path: string) {
+    async deleteFile(upload_path: string, profile_picture_url: string) {
         try {
+            const path = join(process.cwd(), upload_path, profile_picture_url)
             if (!existsSync(path)) {
                 throw new NotFoundException('Not found file')
             }

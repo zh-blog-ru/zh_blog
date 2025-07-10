@@ -15,10 +15,10 @@ import { FileOptimizationPipe } from 'Generated/FileOptimizationPipe';
 import { ResetPasswordGuard } from 'Generated/ResetPasswordGuard';
 import { ResetPasswordDTO } from 'DTO/ResetPassword.dto';
 import { ChangePasswordDto } from 'DTO/ChangePassowrdDto.dto';
-import { join } from 'path';
 import { FileParsePipe } from 'Generated/FileParsePipe';
 import { ValidationService } from 'src/validation/validation.service';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('users')
 export class UsersController {
@@ -28,9 +28,9 @@ export class UsersController {
         private readonly articleService: ArticleService,
         private readonly fileService: FileService,
         private readonly validationService: ValidationService,
-        private readonly jwtService: JwtService
+        private readonly jwtService: JwtService,
+        private readonly configService: ConfigService,
     ) { }
-
 
     @Get("me")
     async getCurrentUser(@Req() req: Request): Promise<PrivateUserInterfaces> {
@@ -62,11 +62,7 @@ export class UsersController {
     @Delete('me/delete')
     async deleteAccount(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
         const user_jwt_payload = req.user as UserJWTInterfaces
-        const profile_picture_url: null | string = await this.usersService.deleteAccount(user_jwt_payload.id)
-        if (profile_picture_url) {
-            const filePath = join(process.cwd(), 'uploads/stable/images', profile_picture_url)
-            await this.fileService.deleteFile(filePath)
-        }
+        await this.usersService.deleteAccount(user_jwt_payload.id)
         res.clearCookie('jwt', {
             sameSite: 'lax',
             httpOnly: true, secure: true, maxAge: 3600 * 1000 * 24
@@ -75,7 +71,7 @@ export class UsersController {
 
     @isPublic()
     @Get(":id/liked_articles")
-    async getArticlesLikedUser(@Param('id' ,ParseIntPipe) id: number) {
+    async getArticlesLikedUser(@Param('id', ParseIntPipe) id: number) {
         const articles = await this.articleService.getArticlesLikedUser(id)
         return articles
     }
@@ -87,7 +83,8 @@ export class UsersController {
         new FileOptimizationPipe()
     ) file: Express.Multer.File, @Req() req: Request) {
         const user_jwt_payload = (req.user as UserJWTInterfaces)
-        const filename = await this.fileService.savePhoto('./uploads/stable/images', file.buffer)
+        const uploadPath = this.configService.get('STABLE_IMAGES_PATH')
+        const filename = await this.fileService.savePhoto(uploadPath, file.buffer)
         await this.usersService.changeProfileImage(user_jwt_payload.id, filename)
     }
 
@@ -96,8 +93,8 @@ export class UsersController {
         const user_jwt_payload = (req.user as UserJWTInterfaces)
         const old_profile_picture_url = await this.usersService.changeProfileImage(user_jwt_payload.id, null)
         console.log('old_profile_picture_url: ', old_profile_picture_url)
-        const filePath = join(process.cwd(), 'uploads/stable/images', old_profile_picture_url)
-        this.fileService.deleteFile(filePath)
+        const upload_path = this.configService.get('STABLE_IMAGES_PATH')
+        this.fileService.deleteFile(upload_path, old_profile_picture_url)
     }
 
     @UseGuards(ChangeEmailGuard)

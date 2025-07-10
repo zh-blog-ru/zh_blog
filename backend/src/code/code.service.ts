@@ -51,6 +51,7 @@ export class CodeService {
                 property: 'code'
             }, HttpStatus.BAD_REQUEST);
         }
+        await this.cacheManager.del(JSON.stringify({ email, type }));
     }
 
     async handleCodeOperation(email: string, type: EmailType) {

@@ -1,4 +1,4 @@
-import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from '@nestjs/common';
+import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException, Logger } from '@nestjs/common';
 import * as FileType from 'file-type';
 import * as sharp from 'sharp';
 
@@ -10,6 +10,7 @@ export class FileOptimizationPipe implements PipeTransform {
         'image/png',
         'image/webp'
     ];
+    private readonly logger = new Logger(FileOptimizationPipe.name);
 
 
     constructor(private readonly options: { quality?: number } = {quality: 80}) { } // Принимаем параметры
@@ -17,6 +18,7 @@ export class FileOptimizationPipe implements PipeTransform {
     async transform(file: Express.Multer.File, metadata: ArgumentMetadata): Promise<Express.Multer.File | void>  {
         try {
             // Validate file type
+            console.log('file.size: ', file.size)
             const type = await FileType.fileTypeFromBuffer(file.buffer);
 
             if (!type || !this.supportedMimeTypes.includes(type.mime)) {
@@ -25,6 +27,10 @@ export class FileOptimizationPipe implements PipeTransform {
 
             const quality = this.options.quality;
             const optimizedBuffer = await sharp(file.buffer)
+                .resize({
+                    width: 720,
+                    height: 720
+                })
                 .rotate() // Auto-orient based on EXIF
                 .withMetadata({
                 }) // Remove all metadata
@@ -34,7 +40,7 @@ export class FileOptimizationPipe implements PipeTransform {
                     progressive: true // Better for web
                 })
                 .toBuffer();
-
+            console.log(optimizedBuffer.length)
             return {
                 ...file,
                 buffer: optimizedBuffer,
@@ -45,6 +51,7 @@ export class FileOptimizationPipe implements PipeTransform {
             if (error instanceof BadRequestException) {
                 throw error;
             }
+            this.logger.error(error)
             throw new BadRequestException('Failed to process image');
         }
     }

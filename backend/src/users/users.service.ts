@@ -11,6 +11,7 @@ import { join } from 'path';
 const bcrypt = require('bcrypt');
 import * as createDOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
+import { ConfigService } from '@nestjs/config';
 
 
 @Injectable()
@@ -20,6 +21,7 @@ export class UsersService {
         private readonly databaseService: DatabaseService,
         private readonly i18n: I18nService<I18nTranslations>,
         private readonly fileService: FileService,
+        private readonly configService: ConfigService,
     ) { }
 
     async findJWTPayloadByUsername(username: string): Promise<UserJWTInterfaces & { password_hash: string } | false> {
@@ -65,7 +67,11 @@ export class UsersService {
             const { profile_picture_url } = (await this.databaseService.query(`
                 DELETE from users where id = $1 RETURNING profile_picture_url`,
                 [id])).rows[0]
-            return profile_picture_url
+
+            if (profile_picture_url) {
+                const uploadPath = this.configService.get('STABLE_IMAGES_PATH')
+                await this.fileService.deleteFile(uploadPath, profile_picture_url)
+            }
         } catch (error) {
             this.logger.error(error);
             throw new InternalServerErrorException();
@@ -112,8 +118,8 @@ export class UsersService {
             return res.old_profile_picture_url
         } catch (error) {
             if (profile_picture_url) {
-                const filePath = join(process.cwd(), 'uploads/stable/images', profile_picture_url)
-                await this.fileService.deleteFile(filePath)
+                const uploadPath = this.configService.get('STABLE_IMAGES_PATH')
+                await this.fileService.deleteFile(uploadPath, profile_picture_url)
             }
             this.logger.error(error)
             throw new InternalServerErrorException()
