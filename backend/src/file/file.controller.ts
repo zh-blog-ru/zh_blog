@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res, UseFilters, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Res, UseFilters, ValidationPipe } from '@nestjs/common';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { Response } from 'express';
@@ -22,7 +22,7 @@ export class FileController {
         const upload_path = this.configService.get('STABLE_IMAGES_PATH')
         const filePath = join(process.cwd(), upload_path, profile_picture_url)
         if (!existsSync(filePath)) {
-            return res.status(404).send('File not found');
+            throw new NotFoundException()
         }
 
         res.sendFile(filePath, {
