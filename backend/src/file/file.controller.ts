@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param, Res, UseFilters, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, InternalServerErrorException, NotFoundException, Param, Res, UseFilters, ValidationPipe } from '@nestjs/common';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { Response } from 'express';
@@ -24,12 +24,15 @@ export class FileController {
         if (!existsSync(filePath)) {
             throw new NotFoundException()
         }
-
-        res.sendFile(filePath, {
-            headers: {
-                'Content-Type': 'image/jpeg',
-            },
-        });
+        try {
+            res.sendFile(filePath, {
+                headers: {
+                    'Content-Type': 'image/jpeg',
+                },
+            });
+        } catch (error) {
+            throw new InternalServerErrorException()
+        }
 
     }
 }
