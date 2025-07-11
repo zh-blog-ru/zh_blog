@@ -8,6 +8,7 @@ import { UpdateArticlesDto } from 'DTO/UpdateArticlesDto.dto';
 import { CreateArticlesDto } from 'DTO/CreateArticlesDto.dto';
 import { UserJWTInterfaces } from 'interfaces/UserJWTInterfaces';
 import { ExcepMultiLangFilter } from 'Generated/ExcepMultiLangFilter';
+import { LocaleStringDTO } from 'DTO/QueryStringLocaleDto.dto';
 
 @Controller({
   path: 'articles',
@@ -16,7 +17,7 @@ import { ExcepMultiLangFilter } from 'Generated/ExcepMultiLangFilter';
 export class ArticleController {
 
   constructor(
-    private readonly articleService: ArticleService, 
+    private readonly articleService: ArticleService,
   ) { }
 
 
@@ -37,14 +38,24 @@ export class ArticleController {
 
   @isPublic()
   @Get(':id')
-  async getArticle(@Param('id', ParseIntPipe) id: number, @Query('locale') locale: string, @Req() req: Request): Promise<ArticleInterfaces | undefined> {
+  async getArticle(@Param('id', ParseIntPipe) id: number,
+    @Query(new ValidationPipe({
+      whitelist: true,
+      stopAtFirstError: true,
+      transform: true,
+    })) { locale }: LocaleStringDTO): Promise<ArticleInterfaces | undefined> {
     const data = await this.articleService.getArticle(id, locale)
     return data
   }
 
   @isAdmin()
   @Get('info/:id')
-  async getArticleInfo(@Param('id', ParseIntPipe) id: number, @Query('locale') locale: string): Promise<ArticleInterfaces | undefined> {
+  async getArticleInfo(@Param('id', ParseIntPipe) id: number,
+    @Query(new ValidationPipe({
+      whitelist: true,
+      stopAtFirstError: true,
+      transform: true,
+    })) { locale }: LocaleStringDTO): Promise<ArticleInterfaces | undefined> {
     const data = await this.articleService.getArticleInfo(id, locale)
     return data
   }
