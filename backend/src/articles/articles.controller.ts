@@ -30,7 +30,13 @@ export class ArticleController {
 
   @isPublic()
   @Get()
-  async getArticles(@Query('locale') locale: string): Promise<Omit<ArticleInterfaces, 'content'>[] | undefined> {
+  async getArticles(
+    @Query(new ValidationPipe({
+      whitelist: true,
+      stopAtFirstError: true,
+      transform: true,
+      forbidNonWhitelisted: true
+    })) { locale }: LocaleStringDTO): Promise<Omit<ArticleInterfaces, 'content'>[] | undefined> {
     const data = await this.articleService.getArticles(locale)
     console.log(data)
     return data
@@ -43,6 +49,7 @@ export class ArticleController {
       whitelist: true,
       stopAtFirstError: true,
       transform: true,
+      forbidNonWhitelisted: true
     })) { locale }: LocaleStringDTO): Promise<ArticleInterfaces | undefined> {
     const data = await this.articleService.getArticle(id, locale)
     return data
@@ -64,7 +71,13 @@ export class ArticleController {
   @UseFilters(ExcepMultiLangFilter)
   @isAdmin()
   @Patch(':id')
-  async ChangeArticles(@Param('id', ParseIntPipe) id: number, @Query('locale') locale: string,
+  async ChangeArticles(@Param('id', ParseIntPipe) id: number,
+    @Query(new ValidationPipe({
+      whitelist: true,
+      stopAtFirstError: true,
+      transform: true,
+      forbidNonWhitelisted: true
+    })) { locale }: LocaleStringDTO,
     @Body(new ValidationPipe({
       whitelist: true,
       stopAtFirstError: true,
