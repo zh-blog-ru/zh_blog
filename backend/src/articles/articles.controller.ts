@@ -55,6 +55,7 @@ export class ArticleController {
       whitelist: true,
       stopAtFirstError: true,
       transform: true,
+      forbidNonWhitelisted: true
     })) { locale }: LocaleStringDTO): Promise<ArticleInterfaces | undefined> {
     const data = await this.articleService.getArticleInfo(id, locale)
     return data
