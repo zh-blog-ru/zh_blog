@@ -29,11 +29,6 @@ export class FileController {
             headers: {
                 'Content-Type': 'image/jpeg',
             },
-        }, (err) => {
-            if (err) {
-                throw new NotFoundException('File not found');
-            }
-        });
-
+        })
     }
 }
