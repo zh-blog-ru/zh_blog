@@ -17,7 +17,7 @@ export class FileController {
     @UseFilters(ExcepMultiLangFilter)
     @isPublic()
     @Get('photo/public/:profile_picture_url')
-    getPhoto(@Param(ValidationPipe) { profile_picture_url }: ProfileUrlDTO, @Res({passthrough: true}) res: Response) {
+    getPhoto(@Param(ValidationPipe) { profile_picture_url }: ProfileUrlDTO, @Res() res: Response) {
         console.log(profile_picture_url)
         const upload_path = this.configService.get('STABLE_IMAGES_PATH')
         const filePath = join(process.cwd(), upload_path, profile_picture_url)
@@ -29,6 +29,13 @@ export class FileController {
             headers: {
                 'Content-Type': 'image/jpeg',
             },
-        })
+        }, (err) => {
+            if (err) {
+                // Подавляем все ошибки и возвращаем 404
+                throw new NotFoundException('File not found');
+                // return 'not_found'
+            }
+        });
+
     }
 }
