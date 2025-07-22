@@ -24,7 +24,7 @@ import Syntax from './Syntax';
 type Props = {
     params: Promise<{ id: number, locale: LocaleType }>;
 }
-export const dynamicParams = false
+export const dynamicParams = true
 export async function generateStaticParams() {
     const articles = await getArticles()
     const paths = []
