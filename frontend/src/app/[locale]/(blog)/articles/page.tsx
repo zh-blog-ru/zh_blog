@@ -1,12 +1,12 @@
 import React from 'react'
 import s from './page.module.css'
 import Image from 'next/image'
-import { LocaleType } from '@/i18n/locales'
+import { locales, LocaleType } from '@/i18n/locales'
 import { getDictionary } from '@/i18n/getDictionary'
 import Time from './_components/Time'
 import { getArticles } from '../../../../../serverAction/getArticles'
 import LocalizedLink from '@/i18n/routes/LocalizedLink'
-import { Metadata} from 'next'
+import { Metadata } from 'next'
 
 type Props = {
   params: Promise<{ locale: LocaleType }>
@@ -16,9 +16,18 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await params
   const meta = (await getDictionary(locale)).blog.articles.meta
+
+  let languages: { [key: string]: string } = {}
+  locales.forEach((locale) => languages[locale] = `/${locale}/articles`)
   return {
     title: meta.title,
-    description: meta.description
+    description: meta.description,
+    metadataBase: new URL('https://zhblog.ru'),
+    alternates: {
+      canonical: '/articles',
+      languages
+    }
+
   }
 }
 

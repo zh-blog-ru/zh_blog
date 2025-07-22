@@ -91,6 +91,7 @@
             "meta_p": "Have not account?",
             "meta_a": "sign up",
             "modal": {
+                "h2": "Reset your password",
                 "forget_the_password": "Forget the password?",
                 "button": "recover",
                 "code": "Enter the code sent to",

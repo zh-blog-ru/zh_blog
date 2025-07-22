@@ -46,12 +46,18 @@ export async function generateMetadata(
     // fetch data
     const meta = await getArticle(id, locale)
 
-
+    let languages: { [key: string]: string } = {}
+    locales.forEach((locale) => languages[locale] = `/${locale}/articles/${id}`)
     // optionally access and extend (rather than replace) parent metadata
 
     return {
         title: meta.title,
-        description: meta.resume
+        description: meta.resume,
+        metadataBase: new URL('https://zhblog.ru'),
+        alternates: {
+            canonical: `/articles/${id}`,
+            languages
+        }
     }
 }
 

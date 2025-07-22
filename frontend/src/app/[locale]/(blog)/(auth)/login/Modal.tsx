@@ -101,7 +101,7 @@ export default function Modal({
                     <div className={s.filter} />
                     <div className={s.modal}>
                         <IoMdClose className={s.close} onClick={handleCloseModal} />
-                        <h2>Reset your password</h2>
+                        <h2>{dict.h2}</h2>
                         <div className={s.steps}>
                             {/* Step 1 */}
                             <div>
