@@ -55,7 +55,7 @@ export async function generateMetadata(
         description: meta.resume,
         metadataBase: new URL('https://zhblog.ru'),
         alternates: {
-            canonical: `/articles/${id}`,
+            canonical: `/articles/${locale}/${id}`,
             languages
         }
     }

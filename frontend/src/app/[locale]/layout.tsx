@@ -40,7 +40,7 @@ export async function generateMetadata(
     keywords: meta.keywords,
     metadataBase: new URL('https://zhblog.ru'),
     alternates: {
-      canonical: '/',
+      canonical: `/${locale}`,
       languages
     }
   }
