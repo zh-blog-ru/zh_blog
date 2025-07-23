@@ -69,4 +69,15 @@ export class CommentsService {
             throw new InternalServerErrorException()
         }
     }
+
+    async deleteComment(comment_id: number, article_id: number, user_id: number): Promise<void> {
+        try {
+            await this.databaseService.query(`
+            delete from comments where id = $1 and user_id = $2 and article_id = $3
+            `, [comment_id, user_id, article_id])
+        } catch (error) {
+            this.logger.error(error)
+            throw new InternalServerErrorException()
+        }
+    }
 }

@@ -1,20 +1,17 @@
 'use client'
-
 import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { FaUserCircle } from 'react-icons/fa';
-import Image from 'next/image';
-import Time from '../../_components/Time';
 import s from './ListComments.module.css'
 import { useGetCommentsByArticleIdQuery } from '@/_redux/api/Api';
-import ProfileImage from '../../../../../../../components/ProfileImage/ProfileImage';
 import Comment from './Comment';
+import { DictionaryType } from '@/i18n/getDictionary';
 
 export default function ListComments({
     article_id,
-    no_comments
+    dict
 }: {
     article_id: number,
-    no_comments: string
+    dict: DictionaryType['blog']['articles']['id']['buttons']
+    
 }) {
     const [page, setPage] = useState<number>(1);
     const { data: comments, isLoading, isFetching } = useGetCommentsByArticleIdQuery({ article_id, page });
@@ -79,6 +76,7 @@ export default function ListComments({
                                 article_id={article_id}
                                 key={comment.id}
                                 comment={comment}
+                                dict={dict}
                                 ref={isLastComment ? lastCommentRef : null} // Назначаем ref только последнему комментарию
                             />
                         );
@@ -91,7 +89,7 @@ export default function ListComments({
                 </>
                 :
                 <div>
-                    {no_comments}
+                    {dict.no_comments}
                 </div>
             }
         </div>

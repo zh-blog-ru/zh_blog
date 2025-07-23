@@ -9,10 +9,12 @@ import { useErrorHandler } from '../../../../../../../hooks/useErrorHandler'
 
 export default function AddComment({
     article_id,
-    button
+    button,
+    label
 }: {
     article_id: number,
-    button: string
+    button: string,
+    label: string
 }) {
     const [setComments, { isLoading, isError }] = useSetCommetsMutation()
     const [text, setText] = useState<string>('')
@@ -45,7 +47,7 @@ export default function AddComment({
 
     return (
         <div className={s.main}>
-            <CommentForm text={text} setText={setText} setCount={setCount} errors={errors.comment} label={'Написать комментарий'} />
+            <CommentForm text={text} setText={setText} setCount={setCount} errors={errors.comment} label={label} />
             <div className={s.meta}>
                 <div>
                     <button onClick={handleSubmit}

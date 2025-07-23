@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query, Req, Res, UseFilters, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, Req, Res, UseFilters, ValidationPipe } from '@nestjs/common';
 import { isPublic } from 'Generated/PublicDecorator';
 import { CommentsService } from './comments.service';
 import { Request, Response } from 'express';
@@ -28,7 +28,7 @@ export class CommentsController {
     @Post()
     async setComment(@Param('article_id', ParseIntPipe) article_id: number, @Body(
         new ValidationPipe({
-            whitelist: true, 
+            whitelist: true,
             stopAtFirstError: true,
             transform: true,
         })) body: CreateCommentDto, @Req() req: Request) {
@@ -41,12 +41,23 @@ export class CommentsController {
     @Patch('/:comment_id')
     async changeComment(@Param('article_id', ParseIntPipe) article_id: number, @Param('comment_id', ParseIntPipe) comment_id: number, @Body(
         new ValidationPipe({
-            whitelist: true, 
+            whitelist: true,
             stopAtFirstError: true,
             transform: true,
-        })) {comment}: CreateCommentDto, @Req() req: Request, @Res({passthrough: true}) res: Response) {
+        })) { comment }: CreateCommentDto, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
         const user_jwt_payload = req.user as UserJWTInterfaces
         const result = await this.commentsService.changeComment(comment, comment_id, article_id, user_jwt_payload.id)
+        return result
+    }
+
+    @UseFilters(ExcepMultiLangFilter)
+    @Delete('/:comment_id')
+    async deleteComment(
+        @Param('article_id', ParseIntPipe) article_id: number,
+        @Param('comment_id', ParseIntPipe) comment_id: number,
+        @Req() req: Request, @Res({ passthrough: true }) res: Response) {
+        const user_jwt_payload = req.user as UserJWTInterfaces
+        const result = await this.commentsService.deleteComment(comment_id, article_id, user_jwt_payload.id)
         return result
     }
 }

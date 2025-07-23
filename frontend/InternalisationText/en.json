@@ -51,8 +51,15 @@
             "id": {
                 "h2": "Comments",
                 "button": "Send",
-                "no_comments": "No Comments",
-                "error_message": "It's not working yet(("
+                "error_message": "It's not working yet((",
+                "buttons": {
+                    "no_comments": "No Comments",
+                    "delete": "Delete",
+                    "update": "Update",
+                    "cancel": "Cancel",
+                    "label": "Write a comment"
+                },
+                "label": "Write a comment"
             },
             "not_articles": "There are no articles"
         },

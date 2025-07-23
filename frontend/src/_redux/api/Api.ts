@@ -33,8 +33,8 @@ export const Api = createApi({
     baseQuery: customBaseQuery,
     tagTypes: ['Comments', 'Likes', 'User'],
     endpoints: builder => ({
-        changeArticle: builder.mutation<Article, UpdateArticlesInterface & {locale: LocaleType, id: number}>({
-            query: ({id, locale, ...body}) => ({
+        changeArticle: builder.mutation<Article, UpdateArticlesInterface & { locale: LocaleType, id: number }>({
+            query: ({ id, locale, ...body }) => ({
                 url: `articles/${id}?locale=${locale}`,
                 method: 'PATCH',
                 body
@@ -100,6 +100,27 @@ export const Api = createApi({
                             if (setComments) {
                                 draft.comments.unshift(setComments)
                             }
+                        })
+                    )
+                } catch {
+
+                }
+            },
+        }),
+        deleteCommets: builder.mutation<void, { article_id: number, comment_id: number }>({
+            query: ({ article_id, comment_id }) => {
+                return {
+                    method: 'DELETE',
+                    url: `articles/${article_id}/comments/${comment_id}`,
+                    credentials: 'include'
+                }
+            },
+            async onQueryStarted({ article_id, comment_id }, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled
+                    const patchResult = dispatch(
+                        Api.util.updateQueryData('getCommentsByArticleId', { article_id }, (draft) => {
+                            draft.comments = draft.comments.filter(comment => comment.id !== comment_id);
                         })
                     )
                 } catch {
@@ -364,6 +385,7 @@ export const Api = createApi({
 })
 
 export const {
+    useDeleteCommetsMutation,
     useAddArticlesMutation,
     useResetCodeMutation,
     usePostErrosMutation,

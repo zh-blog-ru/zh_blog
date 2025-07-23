@@ -49,7 +49,7 @@ export class UsersController {
         Promise<PublicUserInterfaces | PrivateUserInterfaces> {
         const user_jwt_payload = req.user as UserJWTInterfaces | null
         const user = await this.usersService.findUserById(id)
-        const isOwner = user_jwt_payload && (user_jwt_payload.id === id || user_jwt_payload.role == 'admin');
+        const isOwner = user_jwt_payload && (user_jwt_payload.id === id);
 
         if (isOwner) {
             return { ...user, isOwner: true } as PrivateUserInterfaces;

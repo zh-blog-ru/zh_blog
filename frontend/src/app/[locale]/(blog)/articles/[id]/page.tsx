@@ -90,7 +90,7 @@ export default async function page({
     return (
         <div className={s.page}>
             <div className={s.img_container}>
-                <Image src={article.img} fill alt='' priority style={{ objectFit: 'cover', objectPosition: '50% 25%' }} />
+                <Image src={article.img} fill alt={article.title} priority style={{ objectFit: 'cover', objectPosition: '50% 25%' }} />
             </div>
             <div className={s.main}>
                 <main className={s.text}>
@@ -108,8 +108,8 @@ export default async function page({
                     <h2>
                         {dict.h2}
                     </h2>
-                    <AddComment article_id={id} button={dict.button} />
-                    <ListComments article_id={id} no_comments={dict.no_comments} />
+                    <AddComment article_id={id} button={dict.button} label={dict.label}/>
+                    <ListComments article_id={id} dict={dict.buttons} />
                 </div>
             </div>
         </div>

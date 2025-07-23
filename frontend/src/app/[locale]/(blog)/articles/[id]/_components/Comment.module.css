@@ -24,8 +24,11 @@
     background: none;
     text-decoration: underline;
     color: var(--ColorBlack);
+    cursor: pointer;
 }
-
+.data button:hover {
+    color: var(--ColorGray_4);
+}
 .data div {
     display: flex;
     align-items: center;
