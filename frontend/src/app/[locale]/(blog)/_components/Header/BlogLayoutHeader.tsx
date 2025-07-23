@@ -21,11 +21,9 @@ export default async function BlogLayoutHeader({ params }: { params: Promise<{ l
   return (
     <div className={s.main}>
       <div className={s.logoBlock}>
-        <h1 className={irish_grover.className}>
-          <LocalizedLink href={'/articles'}>
-            ZH Blog
-          </LocalizedLink>
-        </h1>
+        <LocalizedLink href={'/articles'} className={irish_grover.className}>
+          ZH Blog
+        </LocalizedLink>
         <nav className={s.navigation}>
           <LocalizedLink href={'/about_me'}>{dict.navigation['about me']}</LocalizedLink>
           <LocalizedLink href={'/articles'}>{dict.navigation.articles}</LocalizedLink>

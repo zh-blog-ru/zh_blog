@@ -11,22 +11,17 @@
     height: 3rem;
 }
 
-.main h1 {
+.logoBlock>a {
     margin: 0px;
     color: var(--ColorBlack);
     text-wrap: nowrap;
     font-size: 1.5rem;
-}
-
-.main h1 a {
     text-decoration: none;
     color: unset;
 }
 
-.main h1 a:hover {
+.logoBlock>a:hover {
     color: var(--ColorGray_4);
-
-
 }
 
 .navigation {
