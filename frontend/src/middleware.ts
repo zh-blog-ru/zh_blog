@@ -9,6 +9,14 @@ export function middleware(request: NextRequest) {
   }
   //////////////////////////////////////////////////////
 
+  const { pathname } = request.nextUrl;
+  const isRootOrLangPath = /^\/[a-z]{2}\/?$|^\/$/.test(pathname);
+
+  if (isRootOrLangPath) {
+    const lang = pathname === '/' ? 'en' : pathname.replace(/\//g, ''); // Если `/` → `en`, иначе `ru`, `es` и т. д.
+    return NextResponse.redirect(new URL(`/${lang}/articles`, request.url), 301);
+  }
+
   const requestHeaders = request.headers
 
   requestHeaders.set(
@@ -32,9 +40,9 @@ export function middleware(request: NextRequest) {
     media-src 'none';
     object-src 'none';
     script-src-attr 'none'; 
-    ` 
-    //    trusted-types nextjs#bundler #zh_bundler;
-    // require-trusted-types-for 'script';
+    `
+  //    trusted-types nextjs#bundler #zh_bundler;
+  // require-trusted-types-for 'script';
 
 
   requestHeaders.set(

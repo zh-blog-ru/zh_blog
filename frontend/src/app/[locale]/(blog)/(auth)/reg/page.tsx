@@ -1,6 +1,6 @@
 import s from './page.module.css'
 import Form from './Form'
-import { LocaleType } from '@/i18n/locales'
+import { locales, LocaleType } from '@/i18n/locales'
 import { getDictionary } from '@/i18n/getDictionary'
 import { Metadata } from 'next'
 
@@ -14,9 +14,16 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await params
   const meta = (await getDictionary(locale)).blog.reg.meta
+  let languages: { [key: string]: string } = {}
+  locales.forEach((locale) => languages[locale] = `/${locale}/reg`)
   return {
     title: meta.title,
-    description: meta.description
+    description: meta.description,
+    metadataBase: new URL('https://zhblog.ru'),
+    alternates: {
+      canonical: `/${locale}/reg`,
+      languages
+    }
   }
 }
 
@@ -30,7 +37,7 @@ export default async function page({
       <h3>
         {dict.h3}
       </h3>
-        <Form dict={dict} />
+      <Form dict={dict} />
     </div>
   )
 }

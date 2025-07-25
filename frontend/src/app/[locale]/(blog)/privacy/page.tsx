@@ -1,6 +1,6 @@
 import path from 'path';
 import { readFileSync } from 'fs';
-import { LocaleType } from '@/i18n/locales';
+import { locales, LocaleType } from '@/i18n/locales';
 import s from '../../../../../file/politic/Politic.module.css';
 import { Metadata } from 'next';
 import { getDictionary } from '@/i18n/getDictionary';
@@ -15,9 +15,16 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await params
   const meta = (await getDictionary(locale)).blog.privacy.meta
+  let languages: { [key: string]: string } = {}
+  locales.forEach((locale) => languages[locale] = `/${locale}/privacy`)
   return {
     title: meta.title,
-    description: meta.description
+    description: meta.description,
+    metadataBase: new URL('https://zhblog.ru'),
+    alternates: {
+      canonical: `/${locale}/privacy`,
+      languages
+    }
   }
 }
 

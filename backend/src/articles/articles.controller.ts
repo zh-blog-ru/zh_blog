@@ -38,7 +38,6 @@ export class ArticleController {
       forbidNonWhitelisted: true
     })) { locale }: LocaleStringDTO): Promise<Omit<ArticleInterfaces, 'content'>[] | undefined> {
     const data = await this.articleService.getArticles(locale)
-    console.log(data)
     return data
   }
 

@@ -4,7 +4,7 @@ import js from './../../../../../public/javascript-logo.svg'
 import react from './../../../../../public/react.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { LocaleType } from '@/i18n/locales'
+import { locales, LocaleType } from '@/i18n/locales'
 import { getDictionary } from '@/i18n/getDictionary'
 import { Metadata } from 'next'
 
@@ -19,9 +19,16 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await params
   const meta = (await getDictionary(locale)).blog.about_me.meta
+  let languages: { [key: string]: string } = {}
+  locales.forEach((locale) => languages[locale] = `/${locale}/about_me`)
   return {
     title: meta.title,
-    description: meta.description
+    description: meta.description,
+    metadataBase: new URL('https://zhblog.ru'),
+    alternates: {
+      canonical: `/${locale}/about_me`,
+      languages
+    }
   }
 }
 
@@ -34,7 +41,7 @@ export default async function page({
   return (
     <div>
       <div className={s.main}>
-        <h1>Чуть-чуть обо мне</h1>
+        <h2>Чуть-чуть обо мне</h2>
       </div>
     </div>
   )

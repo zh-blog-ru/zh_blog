@@ -42,16 +42,16 @@ export default async function BlogArticlesPage({
   let articles = await getArticles(locale)
   return (
     <div className={s.main}>
-      <h2>
+      <h1>
         {dict.h2}
-      </h2>
+      </h1>
       {articles.length !== 0 ?
         <div className={s.articles}>
           {articles.map((item, index) => (
             <div key={item.id} className={s.article}>
               <LocalizedLink href={'/articles/' + item.id}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
-                  <Image src={item.img} alt='photo' fill
+                  <Image src={item.img} alt={item.title} fill
                     style={{ objectFit: 'cover' }} sizes="(min-width: 768px) 100vw, 50vw" priority />
                 </div>
               </LocalizedLink>

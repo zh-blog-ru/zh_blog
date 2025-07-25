@@ -6,24 +6,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://zhblog.ru'
 
     // 1. Получаем статьи для всех локалей
-    const articlesByLocale = await Promise.all(
-        locales.map(async locale => {
-            const articles = await getArticles(locale)
-            return { locale, articles }
-        })
-    )
-
-    // 2. Собираем все статьи с указанием локали
-    const allArticles = articlesByLocale.flatMap(({ locale, articles }) =>
-        articles.map(article => ({ ...article, locale })))
-
+    const allArticles = await getArticles() 
     // 3. Генерируем записи для статей
     const articlePages: MetadataRoute.Sitemap = allArticles.map(article => ({
         url: `${baseUrl}/${article.locale}/articles/${article.id}`,
         lastModified: new Date(article.update_at),
         alternates: {
             languages: Object.fromEntries(
-                locales.filter(l => l !== article.locale).map(l => [
+                locales.map(l => [
                     l,
                     `${baseUrl}/${l}/articles/${article.id}`
                 ])
@@ -38,7 +28,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(),
             alternates: {
                 languages: Object.fromEntries(
-                    locales.filter(l => l !== locale).map(l => [l, `${baseUrl}/${l}/about_me`])
+                    locales.map(l => [l, `${baseUrl}/${l}/about_me`])
+                )
+            }
+        },
+        {
+            url: `${baseUrl}/${locale}/privacy`,
+            lastModified: new Date(),
+            alternates: {
+                languages: Object.fromEntries(
+                    locales.map(l => [l, `${baseUrl}/${l}/about_me`])
+                )
+            }
+        },
+        {
+            url: `${baseUrl}/${locale}/terms`,
+            lastModified: new Date(),
+            alternates: {
+                languages: Object.fromEntries(
+                    locales.map(l => [l, `${baseUrl}/${l}/about_me`])
                 )
             }
         },
@@ -47,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(),
             alternates: {
                 languages: Object.fromEntries(
-                    locales.filter(l => l !== locale).map(l => [l, `${baseUrl}/${l}/articles`])
+                    locales.map(l => [l, `${baseUrl}/${l}/articles`])
                 )
             }
         }

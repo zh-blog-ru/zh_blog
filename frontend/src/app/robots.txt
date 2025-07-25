@@ -1,13 +1,7 @@
 User-agent: *
-Allow: /*/articles$     
-Allow: /*/articles/     
-Allow: /*/about_me$     
-
-Disallow: /*/login$       
-Disallow: /*/reg$         
-Disallow: /*/settings$    
-Disallow: /*/profile/     
-
-Disallow: /api/           
+Allow: /api/v1/articles$
+Allow: /api/v1/articles/*
+Disallow: /api/
+Disallow: /*/settings$
 
 Sitemap: https://zhblog.ru/sitemap.xml

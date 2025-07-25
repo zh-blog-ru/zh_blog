@@ -14,9 +14,16 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await params
   const meta = (await getDictionary(locale)).blog.login.meta
+  let languages: { [key: string]: string } = {}
+  locales.forEach((locale) => languages[locale] = `/${locale}/login`)
   return {
     title: meta.title,
-    description: meta.description
+    description: meta.description,
+    metadataBase: new URL('https://zhblog.ru'),
+    alternates: {
+      canonical: `/${locale}/login`,
+      languages
+    }
   }
 }
 
@@ -33,7 +40,7 @@ export default async function page({
       <h3>
         {dict.h3}
       </h3>
-        <Form dict={dict} />
+      <Form dict={dict} />
     </div>
   )
 }
