@@ -174,7 +174,7 @@ export class ArticleService {
         try {
             await this.databaseService.query(
                 `
-                update articles set images = '{$2}' where id=$1;
+                update articles set images = array[$2] where id=$1
             `, [article_id, filename]
             )
         } catch (error) {
