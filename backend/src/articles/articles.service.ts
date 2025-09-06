@@ -174,7 +174,7 @@ export class ArticleService {
         try {
             await this.databaseService.query(
                 `
-                UPDATE articles 
+                UPDATE zh_data.articles 
                 SET images = images 
                 WHERE id = $1;
             `, [article_id, filename]
