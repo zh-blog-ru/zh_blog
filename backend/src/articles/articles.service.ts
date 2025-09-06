@@ -174,7 +174,9 @@ export class ArticleService {
         try {
             await this.databaseService.query(
                 `
-                update articles set images = images || $2::varchar(64) where id=$1;
+                UPDATE articles 
+                SET images = array_append(images, $2::varchar(64)) 
+                WHERE id = $1;
             `, [article_id, filename]
             )
         } catch (error) {
