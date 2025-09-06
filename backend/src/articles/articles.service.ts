@@ -174,7 +174,9 @@ export class ArticleService {
         try {
             await this.databaseService.query(
                 `
-                update articles set images = array[$2] where id=$1
+                UPDATE articles 
+                SET images = array_append(images, $2) 
+                WHERE id = $1;
             `, [article_id, filename]
             )
         } catch (error) {
@@ -188,7 +190,7 @@ export class ArticleService {
             await this.databaseService.query(
                 `
             UPDATE articles 
-            SET images = array_remove(images, $2::varchar) 
+            SET images = array_remove(images, $2) 
             WHERE id = $1;
         `, [article_id, filename]
             )
