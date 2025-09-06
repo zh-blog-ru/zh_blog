@@ -174,7 +174,7 @@ export class ArticleService {
         try {
             await this.databaseService.query(
                 `
-                update zh_data.articles set images = images || $2::varchar(64) where id=$1;
+                update articles set images = '{$2}' where id=$1;
             `, [article_id, filename]
             )
         } catch (error) {
