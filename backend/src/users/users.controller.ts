@@ -80,7 +80,7 @@ export class UsersController {
     @UseInterceptors(FileInterceptor('image'))
     async uploadProfileImage(@UploadedFile(
         FileParsePipe,
-        new FileOptimizationPipe()
+        new FileOptimizationPipe({resize: true})
     ) file: Express.Multer.File, @Req() req: Request) {
         const user_jwt_payload = (req.user as UserJWTInterfaces)
         const uploadPath = this.configService.get('STABLE_IMAGES_PATH')

@@ -51,7 +51,7 @@ export class FileController {
     @UseFilters(ExcepMultiLangFilter)
     @Post('/article/image/:article_id')
     @UseInterceptors(FileInterceptor('image'))
-    async getImageToArticle(@UploadedFile(
+    async addImageToArticle(@UploadedFile(
         FileParsePipe,
         new FileOptimizationPipe()
     ) file: Express.Multer.File, @Req() req: Request, @Param('article_id', ParseIntPipe) article_id: number) {
