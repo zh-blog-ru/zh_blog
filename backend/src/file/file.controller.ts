@@ -1,4 +1,5 @@
-import { Controller, Get, NotFoundException, Param, Res, UseFilters, ValidationPipe } from '@nestjs/common';
+import { ArticleService } from './../articles/articles.service';
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Req, Res, UploadedFile, UseFilters, UseInterceptors, ValidationPipe } from '@nestjs/common';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { Response } from 'express';
@@ -6,12 +7,19 @@ import { ProfileUrlDTO } from 'DTO/ProfileUrlDto.dto';
 import { isPublic } from 'Generated/PublicDecorator';
 import { ExcepMultiLangFilter } from 'Generated/ExcepMultiLangFilter';
 import { ConfigService } from '@nestjs/config';
+import { isAdmin } from 'Generated/AdminDecorator';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FileParsePipe } from 'Generated/FileParsePipe';
+import { FileOptimizationPipe } from 'Generated/FileOptimizationPipe';
+import { FileService } from './file.service';
 
 @Controller('file')
 export class FileController {
 
     constructor(
         private readonly configService: ConfigService,
+        private readonly fileService: FileService,
+        private readonly articleService: ArticleService,
     ) { }
 
     @UseFilters(ExcepMultiLangFilter)
@@ -37,5 +45,34 @@ export class FileController {
             }
         });
 
+    }
+
+    @isAdmin()
+    @UseFilters(ExcepMultiLangFilter)
+    @Post('/article/image/:article_id')
+    @UseInterceptors(FileInterceptor('image'))
+    async getImageToArticle(@UploadedFile(
+        FileParsePipe,
+        new FileOptimizationPipe()
+    ) file: Express.Multer.File, @Req() req: Request, @Param('article_id', ParseIntPipe) article_id: number) {
+        const uploadPath = this.configService.get('STABLE_IMAGES_PATH')
+        const filename = await this.fileService.savePhoto(uploadPath, file.buffer)
+        console.log('FILENAME: ', filename) 
+        await this.articleService.addImagesToArticles(article_id, filename)
+        return {filename}
+    }
+
+    @isAdmin()
+    @UseFilters(ExcepMultiLangFilter)
+    @Delete('/article/image/:article_id')
+    async deleteImageToArticle(@Body(new ValidationPipe({
+      whitelist: true,
+      stopAtFirstError: true,
+      transform: true,
+      skipUndefinedProperties: true
+    })) { profile_picture_url: filename }: ProfileUrlDTO, @Req() req: Request, @Param('article_id', ParseIntPipe) article_id: number) {
+        const uploadPath = this.configService.get('STABLE_IMAGES_PATH')
+        await this.fileService.deleteFile(uploadPath, filename)
+        await this.articleService.deleteImagesToArticles(article_id, filename)
     }
 }

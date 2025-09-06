@@ -1,6 +1,5 @@
 import { locales, LocaleType } from '@/i18n/locales';
 import React from 'react'
-import { ArticleInterface } from '../../../../../../Interfaces/ArticleInterface';
 import Image from 'next/image';
 import s from './page.module.css'
 import { Marked } from 'marked';

@@ -358,6 +358,22 @@ export const Api = createApi({
             }),
             invalidatesTags: [{ type: 'User' }]
         }),
+        uploadImageToArtile: builder.mutation<{filename: string}, {article_id: number, body: FormData}>({
+            query: ({body, article_id}) => ({
+                url: `file/article/image/${article_id}`,
+                method: 'POST',
+                body,
+                credentials: 'include'
+            }),
+        }),
+        deleteImageToArtile: builder.mutation<void, {article_id: number, filename: string}>({
+            query: ({filename, article_id}) => ({
+                url: `file/article/image/${article_id}`,
+                method: 'DELETE',
+                body: {profile_picture_url: filename},
+                credentials: 'include'
+            }),
+        }),
         deleteImage: builder.mutation<void, void>({
             query: (body) => ({
                 url: 'users/me/photo',
@@ -385,6 +401,8 @@ export const Api = createApi({
 })
 
 export const {
+    useDeleteImageToArtileMutation,
+    useUploadImageToArtileMutation,
     useDeleteCommetsMutation,
     useAddArticlesMutation,
     useResetCodeMutation,

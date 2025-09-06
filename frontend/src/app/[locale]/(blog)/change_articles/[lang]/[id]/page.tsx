@@ -8,6 +8,8 @@ import ChangeImage from './_components/ChangeImage'
 import Theme from './_components/Theme'
 import Form from './_components/Form'
 import { getInfoArticle } from '../../../../../../../serverAction/getInfoArticle'
+import AddImages from './_components/AddImages'
+import Image from 'next/image'
 
 type Props = {
     params: Promise<{ locale: LocaleType, lang: LocaleType, id: number }>
@@ -19,12 +21,12 @@ export default async function Page({
     await IsAdmin()
     const { lang, id } = await params
     const article = await getInfoArticle(id, lang)
-    
+
     return (
         <div className={s.main}>
             <h2>Редактирование статьи {lang.toUpperCase()}</h2>
 
-            <Form 
+            <Form
                 lang={lang}
                 id={id}
                 className={s.articleContainer}
@@ -106,6 +108,8 @@ export default async function Page({
                     </div>
                 </div>
             </Form>
+
+            <AddImages article_id={id} images_list={article.images}/>
         </div>
     )
 }

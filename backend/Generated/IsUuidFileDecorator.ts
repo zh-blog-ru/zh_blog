@@ -22,12 +22,18 @@ export class IsUUIDFileConstraint implements ValidatorConstraintInterface {
     const [filename, extension] = parts
 
     // Проверяем UUID
+    console.log('00000')
+    console.log(filename)
+    console.log(!isUUID(filename, uuidVersion))
     if (!isUUID(filename, uuidVersion)) {
+      console.log(231123123123)
       return false;
     }
+    console.log(111111)
     if ((!allowedExtensions || allowedExtensions.length === 0)) {
       return true;
     }
+    console.log(2222222)
     if (!(parts.length == 2)) {
       return false; // или нет расширение или их больше 1
     }

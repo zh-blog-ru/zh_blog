@@ -9,6 +9,7 @@ export interface ArticleInterface {
     time_to_read: number,
     resume: string,
     img: string,
+    images: string[]
 }
 
 export type CreateArticlesInterface = Pick<ArticleInterface, 'time_to_read' | 'img' | 'theme'>

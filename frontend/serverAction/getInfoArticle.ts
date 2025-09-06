@@ -4,7 +4,7 @@ import { LocaleType } from "@/i18n/locales"
 import { cookies } from "next/headers"
 
 
-type InfoArticle = ArticleInterface & {is_active: boolean}
+type InfoArticle = ArticleInterface & {is_active: boolean} 
 export async function getInfoArticle(article_id: number, lang: LocaleType): Promise<InfoArticle | never> {
     console.log('article/[id]')
     const response = (await fetch(`https://zhblog.ru/api/v1/articles/info/${article_id}?locale=${lang}`, {

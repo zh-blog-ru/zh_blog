@@ -77,7 +77,7 @@ export class ArticleService {
             select a.*, at.locale, at.title, at.resume, at.content, at.is_active from articles a
             join articles_translation at ON a.id=at.article_id where at.locale=$1 and a.id=$2 
             `, [locale, id]
-            )).rows as [ArticleInterfaces & {is_active: boolean}] | []
+            )).rows as [ArticleInterfaces & { is_active: boolean }] | []
             if (article.length == 0) {
                 throw new NotFoundException()
             } else if (article.length > 1) {
@@ -108,7 +108,7 @@ export class ArticleService {
 
     async getArticlesInfo() {
         try {
-            const articles: (ArticleWithoutContent & {is_active: boolean})[] | [] = (await this.databaseService.query(`
+            const articles: (ArticleWithoutContent & { is_active: boolean })[] | [] = (await this.databaseService.query(`
             select a.id, a.img, a.theme, a.time_to_read, a.create_at, a.update_at, at.locale, at.title, at.resume, at.is_active from articles a
             join articles_translation at ON a.id=at.article_id order by a.id desc
             `)).rows
@@ -169,6 +169,35 @@ export class ArticleService {
             client.release();
         }
     }
+
+    async addImagesToArticles(article_id: number, filename: string) {
+        try {
+            await this.databaseService.query(
+                `
+                update articles set images = images || $2::varchar(64) where id=$1;
+            `, [article_id, filename]
+            )
+        } catch (error) {
+            this.logger.error(error);
+            throw new InternalServerErrorException();
+        }
+    }
+
+    async deleteImagesToArticles(article_id: number, filename: string) {
+        try {
+            await this.databaseService.query(
+                `
+            UPDATE articles 
+            SET images = array_remove(images, $2::varchar) 
+            WHERE id = $1;
+        `, [article_id, filename]
+            )
+        } catch (error) {
+            this.logger.error(error);
+            throw new InternalServerErrorException();
+        }
+    }
+
 
     async createArticles(body: CreateArticlesDto) {
         try {
