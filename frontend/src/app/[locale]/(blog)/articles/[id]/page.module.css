@@ -46,6 +46,7 @@
     font-weight: 550;
     color: unset;
     color: var(--ColorGray_4);
+    word-break: break-all;
 }
 
 .markdown ul {
@@ -90,6 +91,13 @@
     display: block;
 }
 
+.markdown p code {
+    background-color: var(--ColorGray_2);
+    padding: 0rem 0.2rem;
+    border-radius: 0.2rem;
+    word-break: break-all;
+}
+
 .comments {
     max-width: 600px;
     width: 100%;
@@ -98,4 +106,10 @@
 .comments h2 {
     font-size: 1.6rem;
     margin-bottom: 0.7rem;
+}
+
+@media (min-width:600px) {
+    .markdown p code {
+        word-break: normal;
+    }
 }
