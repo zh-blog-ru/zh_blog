@@ -10,7 +10,7 @@ export class CheckCodeDto {
     @IsString({
         message: i18nValidationMessageType('validation.STRING'),
     })
-    @MaxLength(64, {
+    @MaxLength(64, { 
         message: i18nValidationMessageType('validation.MAXLENGTH'),
     })
     @IsEmail({}, {

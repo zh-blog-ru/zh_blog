@@ -25,7 +25,6 @@ export class DatabaseService {
         application_name: 'zhblog.ru',
         connectionTimeoutMillis: 3000,
         statement_timeout: 3000, 
-
     }) 
     constructor(private readonly configService: ConfigService<DatabaseConfig>) {}
 
